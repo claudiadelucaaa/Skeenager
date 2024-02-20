@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		651A296C2B84A75A004897DE /* buttonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A296B2B84A75A004897DE /* buttonView.swift */; };
+		6563C51E2B84C0680001C761 /* ciao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563C51D2B84C0680001C761 /* ciao.swift */; };
 		ED082CA92B839BF900D2FFB6 /* Assest.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED082CA82B839BF900D2FFB6 /* Assest.xcassets */; };
 		EDA05E5C2B8352D40001BE93 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = EDA05E5B2B8352D40001BE93 /* art.scnassets */; };
 		EDBFE34C2B7FFF2700B0585F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBFE34B2B7FFF2700B0585F /* AppDelegate.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		651A296B2B84A75A004897DE /* buttonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buttonView.swift; sourceTree = "<group>"; };
+		6563C51D2B84C0680001C761 /* ciao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ciao.swift; sourceTree = "<group>"; };
 		ED082CA82B839BF900D2FFB6 /* Assest.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assest.xcassets; sourceTree = "<group>"; };
 		EDA05E5B2B8352D40001BE93 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		EDBFE3482B7FFF2700B0585F /* skk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +62,9 @@
 			children = (
 				EDBFE35F2B80033B00B0585F /* Face.mlmodel */,
 				EDBFE34B2B7FFF2700B0585F /* AppDelegate.swift */,
+				6563C51D2B84C0680001C761 /* ciao.swift */,
 				EDBFE34F2B7FFF2700B0585F /* ViewController.swift */,
+				651A296B2B84A75A004897DE /* buttonView.swift */,
 				ED082CA82B839BF900D2FFB6 /* Assest.xcassets */,
 				EDBFE3562B7FFF2800B0585F /* LaunchScreen.storyboard */,
 				EDBFE3592B7FFF2800B0585F /* Info.plist */,
@@ -138,6 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6563C51E2B84C0680001C761 /* ciao.swift in Sources */,
+				651A296C2B84A75A004897DE /* buttonView.swift in Sources */,
 				EDBFE3502B7FFF2700B0585F /* ViewController.swift in Sources */,
 				EDBFE34C2B7FFF2700B0585F /* AppDelegate.swift in Sources */,
 				EDBFE3602B80033B00B0585F /* Face.mlmodel in Sources */,
@@ -284,7 +292,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LHM9LNP2C8;
+				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = skk/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
@@ -313,7 +321,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LHM9LNP2C8;
+				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = skk/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";

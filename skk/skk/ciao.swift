@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+@main
+struct ciao: App {
+    var body: some Scene {
+        WindowGroup {
+            buttonView()
+        }
+    }
+}

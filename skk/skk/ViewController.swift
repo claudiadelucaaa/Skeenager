@@ -5,15 +5,31 @@
 //  Created by Raffaele Marino  on 16/02/24.
 //clalcalcalcaclacl
 
-import UIKit
 import AVKit
 import Vision
 import ARKit
 import CoreML
 import SceneKit
+import SwiftUI
+
+struct ARViewContainer: UIViewRepresentable {
+    func makeUIView(context: Context) -> ARSCNView {
+        let sceneView = ARSCNView()
+        
+        let configuration = ARFaceTrackingConfiguration()
+        configuration.isLightEstimationEnabled = true
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        return sceneView
+    }
+
+    func updateUIView(_ uiView: ARSCNView, context: Context) {
+        // Update code here if needed
+    }
+}
+
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ARSessionDelegate {
-    
+
     let sceneView = ARSCNView(frame: UIScreen.main.bounds)
     
     override func viewDidLoad() {
