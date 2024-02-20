@@ -12,21 +12,6 @@ import CoreML
 import SceneKit
 import SwiftUI
 
-struct ARViewContainer: UIViewRepresentable {
-    func makeUIView(context: Context) -> ARSCNView {
-        let sceneView = ARSCNView()
-        
-        let configuration = ARFaceTrackingConfiguration()
-        configuration.isLightEstimationEnabled = true
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        return sceneView
-    }
-
-    func updateUIView(_ uiView: ARSCNView, context: Context) {
-        // Update code here if needed
-    }
-}
-
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ARSessionDelegate {
 
