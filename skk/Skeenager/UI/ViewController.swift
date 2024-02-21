@@ -17,6 +17,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 
     let sceneView = ARSCNView(frame: UIScreen.main.bounds)
     
+    var contentNode: SCNNode?
+    
+    var nameFilter: String = "rainbow"
+    
+    func changefilter(nameFilter: String) {
+        
+        self.nameFilter = nameFilter
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(sceneView)
@@ -38,15 +48,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
-        var contentNode: SCNNode?
-        
         guard let sceneView = renderer as? ARSCNView,
             anchor is ARFaceAnchor else { return nil }
         
         let faceGeometry = ARSCNFaceGeometry(device: sceneView.device!)!
         let material = faceGeometry.firstMaterial!
         
-        material.diffuse.contents = "wireframeTexture" // Example texture map image.
+        material.diffuse.contents = "rainbow" // Example texture map image.
         material.lightingModel = .physicallyBased
         
         contentNode = SCNNode(geometry: faceGeometry)
@@ -62,6 +70,7 @@ extension ViewController: ARSCNViewDelegate {
         }
         
         faceGeometry.update(from: faceAnchor.geometry)
+        faceGeometry.firstMaterial?.diffuse.contents = nameFilter
         
 //        let text = SCNText(string: "", extrusionDepth: 2)
 //        let font = UIFont(name: "Avenir-Heavy", size: 18)
@@ -92,7 +101,7 @@ extension ViewController: ARSCNViewDelegate {
             }
 
             DispatchQueue.main.async {[weak self] in
-                print(topResult.identifier)
+//                print(topResult.identifier)
                 if topResult.identifier != "Unknown" {
 //                    text.string = topResult.identifier
 //                    self!.sceneView.scene.rootNode.addChildNode(textNode)

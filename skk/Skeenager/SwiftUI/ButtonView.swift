@@ -7,20 +7,28 @@
 
 import SwiftUI
 
-struct buttonView: View {
+struct ButtonView: View {
     
-    @State private var showScreen = false
+    var steps = Steps()
+    @State var filterSelected: String
     
     var body: some View {
         ZStack{
-            BasicUIViewControllerRepresentable()
+            BasicUIViewControllerRepresentable(filter: $filterSelected)
                 .ignoresSafeArea()
-            
-            Button(action: {
-                
-            }, label: {
-                Text("Step 1")
-            })
+            VStack{
+                ForEach(steps.stepsList, id: \.self) {
+                    stepList in
+                    Button(action: {
+                        filterSelected = stepList.filte
+                        print(filterSelected)
+                    }, label: {
+                        Text(stepList.name)
+                    })
+
+                }
+            }
+           
         }
         
 //        ZStack {
@@ -38,15 +46,21 @@ struct buttonView: View {
 }
 
 struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
+    
+    @Binding var filter: String
+    
     func makeUIViewController(context: Context) -> some UIViewController {
         return ViewController()
     }
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        let vc = uiViewController as! ViewController
+        vc.changefilter(nameFilter: filter)
+        print("funzione chiamata")
     }
 }
 
 
 #Preview {
-    buttonView()
+    ButtonView(filterSelected: "")
 }
 

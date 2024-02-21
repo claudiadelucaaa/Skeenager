@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 @main
-struct ciao: App {
+struct ContentView: App {
     var body: some Scene {
         WindowGroup {
-            buttonView()
+            ButtonView(filterSelected: "")
         }
     }
 }
