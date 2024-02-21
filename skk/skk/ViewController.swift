@@ -36,23 +36,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 }
 
 extension ViewController: ARSCNViewDelegate {
-    
-    
-//    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-//        
-//        guard let device = sceneView.device else {
-//            return nil
-//        }
-//        
-//        let faceGeometry = ARSCNFaceGeometry(device: device)
-//        
-//        let node = SCNNode(geometry: faceGeometry)
-//        
-//        node.geometry?.firstMaterial?.fillMode = .lines
-//        
-//        return node
-//    }
-    
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
         var contentNode: SCNNode?

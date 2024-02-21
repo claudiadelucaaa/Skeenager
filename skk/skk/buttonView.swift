@@ -19,7 +19,7 @@ struct buttonView: View {
             Button(action: {
                 
             }, label: {
-                Text("PUTA MADRE")
+                Text("Step 1")
             })
         }
         
