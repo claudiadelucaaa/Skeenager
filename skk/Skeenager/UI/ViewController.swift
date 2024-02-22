@@ -5,12 +5,12 @@
 //  Created by Raffaele Marino  on 16/02/24.
 // Claudia ammazzerà raffaele down
 
-import AVKit
+//import AVKit
 import Vision
 import ARKit
 import CoreML
-import SceneKit
-import SwiftUI
+//import SceneKit
+//import SwiftUI
 
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ARSessionDelegate {

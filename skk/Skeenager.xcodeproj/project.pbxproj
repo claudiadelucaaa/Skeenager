@@ -10,6 +10,7 @@
 		651A296C2B84A75A004897DE /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A296B2B84A75A004897DE /* ButtonView.swift */; };
 		6563C51E2B84C0680001C761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563C51D2B84C0680001C761 /* ContentView.swift */; };
 		65EFE88C2B85F2D300F65786 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFE88B2B85F2D300F65786 /* Model.swift */; };
+		65EFE89D2B874B4300F65786 /* StepsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFE89C2B874B4300F65786 /* StepsSelectorView.swift */; };
 		ED082CA92B839BF900D2FFB6 /* Assest.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED082CA82B839BF900D2FFB6 /* Assest.xcassets */; };
 		ED5BD9872B86AA7400151531 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BD9862B86AA7400151531 /* HomePage.swift */; };
 		EDA05E5C2B8352D40001BE93 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = EDA05E5B2B8352D40001BE93 /* art.scnassets */; };
@@ -22,6 +23,7 @@
 		651A296B2B84A75A004897DE /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		6563C51D2B84C0680001C761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		65EFE88B2B85F2D300F65786 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		65EFE89C2B874B4300F65786 /* StepsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsSelectorView.swift; sourceTree = "<group>"; };
 		ED082CA82B839BF900D2FFB6 /* Assest.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assest.xcassets; sourceTree = "<group>"; };
 		ED5BD9862B86AA7400151531 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		EDA05E5B2B8352D40001BE93 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				6563C51D2B84C0680001C761 /* ContentView.swift */,
 				651A296B2B84A75A004897DE /* ButtonView.swift */,
 				ED5BD9862B86AA7400151531 /* HomePage.swift */,
+				65EFE89C2B874B4300F65786 /* StepsSelectorView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			files = (
 				6563C51E2B84C0680001C761 /* ContentView.swift in Sources */,
 				ED5BD9872B86AA7400151531 /* HomePage.swift in Sources */,
+				65EFE89D2B874B4300F65786 /* StepsSelectorView.swift in Sources */,
 				651A296C2B84A75A004897DE /* ButtonView.swift in Sources */,
 				EDBFE3502B7FFF2700B0585F /* ViewController.swift in Sources */,
 				65EFE88C2B85F2D300F65786 /* Model.swift in Sources */,
@@ -330,7 +334,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LHM9LNP2C8;
+				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
 				INFOPLIST_KEY_NSContactsUsageDescription = "";
@@ -359,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LHM9LNP2C8;
+				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

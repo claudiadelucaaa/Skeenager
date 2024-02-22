@@ -16,15 +16,26 @@ struct ButtonView: View {
         ZStack{
             BasicUIViewControllerRepresentable(filter: $filterSelected)
                 .ignoresSafeArea()
-            VStack{
+            VStack(spacing: 20){
                 ForEach(steps.stepsList, id: \.self) {
                     stepList in
                     Button(action: {
                         filterSelected = stepList.filte
                         print(filterSelected)
                     }, label: {
-                        Text(stepList.name)
+                        VStack {
+                            Text("Step " + stepList.pos)
+                                .font(.title)
+                                .foregroundColor(Color.black)
+                                .bold(true)
+                            Text(stepList.name)
+                                .foregroundColor(Color.black)
+                        }
                     })
+                    .background(RoundedRectangle(cornerRadius: 25)
+                        .foregroundStyle(Color.gray)
+                        .opacity(0.3)
+                        .frame(width: 100.0, height: 70.0))
 
                 }
             }
