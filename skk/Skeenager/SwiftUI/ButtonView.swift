@@ -11,33 +11,50 @@ struct ButtonView: View {
     
     var steps = Steps()
     @State var filterSelected: String
-    
+    @State var stepSelected: String
+    @State var posSelected: String
+     
     var body: some View {
         ZStack{
             BasicUIViewControllerRepresentable(filter: $filterSelected)
                 .ignoresSafeArea()
-            VStack(spacing: 20){
-                ForEach(steps.stepsList, id: \.self) {
-                    stepList in
-                    Button(action: {
-                        filterSelected = stepList.filte
-                        print(filterSelected)
-                    }, label: {
-                        VStack {
-                            Text("Step " + stepList.pos)
-                                .font(.title)
+            VStack{
+                HStack{
+                    ForEach(steps.stepsList, id: \.self) {
+                        stepList in
+                        Button(action: {
+                            filterSelected = stepList.filte
+                            stepSelected = stepList.name
+                            posSelected = stepList.pos
+                            
+                            
+                            //                        print(filterSelected)
+                        }, label: {
+                            
+                            Text(stepList.pos)
+                                .font(.system(size: 20))
                                 .foregroundColor(Color.black)
                                 .bold(true)
-                            Text(stepList.name)
-                                .foregroundColor(Color.black)
-                        }
-                    })
-                    .background(RoundedRectangle(cornerRadius: 25)
-                        .foregroundStyle(Color.gray)
-                        .opacity(0.3)
-                        .frame(width: 100.0, height: 70.0))
-
+                                .padding(.all)
+                                .background(Circle()
+                                    .fill(Color.gray)
+                                    .opacity(0.5)
+                                    .frame(width: 40.0, height: 40.0))
+                        })
+                    }
                 }
+                
+                Spacer()
+                
+                Text("Step " + posSelected + ": " + stepSelected)
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.black)
+                    .bold(true)
+                    .padding(.all)
+                    .background(RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.gray)
+                        .opacity(0.5))
+            }
             }
            
         }
@@ -54,7 +71,6 @@ struct ButtonView: View {
 //        }
         
     }
-}
 
 struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
     
@@ -72,6 +88,6 @@ struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
 
 
 #Preview {
-    ButtonView(filterSelected: "")
+    ButtonView(filterSelected: "", stepSelected: "", posSelected: "")
 }
 
