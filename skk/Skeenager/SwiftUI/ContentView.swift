@@ -12,7 +12,7 @@ import SwiftUI
 struct ContentView: App {
     var body: some Scene {
         WindowGroup {
-            ButtonView(filterSelected: "", stepSelected: "", posSelected: "")
+            HomePage()
         }
     }
 }

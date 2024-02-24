@@ -334,7 +334,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z7AQTK42KX;
+				DEVELOPMENT_TEAM = LHM9LNP2C8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
 				INFOPLIST_KEY_NSContactsUsageDescription = "";
@@ -363,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z7AQTK42KX;
+				DEVELOPMENT_TEAM = LHM9LNP2C8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

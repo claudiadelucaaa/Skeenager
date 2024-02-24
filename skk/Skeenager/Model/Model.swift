@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct steps: Hashable {
+struct steps: Hashable, Identifiable {
     var id = UUID()
     var name: String
     var pos: String
