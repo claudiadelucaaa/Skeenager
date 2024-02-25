@@ -49,7 +49,6 @@ struct HomePage: View {
 }
 
 struct PageProducts: View {
-    @State public var goalTypeFilter: steps? = nil
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     
     var body: some View {
@@ -76,6 +75,7 @@ struct PageProducts: View {
 
 struct SelectYourProducts: View {
     @Binding var selectedStates: [Bool]
+    @State var selectedInfo: Bool = false
     @State var showInfo = false
     @State var info: String = ""
     @State private var selectedInfoIndex: Int? = nil
@@ -127,11 +127,12 @@ struct SelectYourProducts: View {
                 HStack {
                     Spacer(minLength: 300)
                     Button(action: {
-                        if selectedStates[index] {
+                        selectedInfo.toggle()
+//                        if selectedStates[index] {
                             selectedInfoIndex = index
                             info = step.info
                             showInfo.toggle()
-                        }
+//                        }
                     }, label: {
                         Image(systemName: "info.circle")
                             .foregroundColor(.black)
