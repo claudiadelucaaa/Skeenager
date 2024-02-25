@@ -10,6 +10,7 @@ import SwiftUI
 struct HomePage: View {
     
     @State private var isButtonClicked = false
+    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     
     var body: some View {
         NavigationView {
@@ -24,7 +25,7 @@ struct HomePage: View {
                     .frame(width: 300, height: 2)
                 
                 NavigationLink(destination: {
-                    SelectYourProducts(info: "")
+                    SelectYourProducts(selectedStates: $selectedStates)
                 }, label: {
                     Text("Welcome")
                         .font(.system(size: 30))
@@ -43,101 +44,123 @@ struct HomePage: View {
                 
                 
             }.fontDesign(.serif)
-        }
+        }.navigationBarBackButtonHidden(true)
+    }
+}
+
+struct PageProducts: View {
+    @State public var goalTypeFilter: steps? = nil
+    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Text("Select your products")
+                    .font(.system(size: 40))
+                    .frame(width: 350)
+                    .multilineTextAlignment(.center)
+                Rectangle()
+                    .frame(width: 350, height: 1)
+//                NavigationLink(destination: {
+//                    ButtonView(filterSelected: "", stepSelected: "", posSelected: "")
+//                }, label: {
+//                    Text("ciao")
+//                })
+                SelectYourProducts(selectedStates: $selectedStates)
+                
+            }
+        }.fontDesign(.serif)
+            .navigationBarBackButtonHidden(true)
     }
 }
 
 struct SelectYourProducts: View {
-    @State var isPresented = false
-    @State var isSelected = false
+    @Binding var selectedStates: [Bool]
     @State var showInfo = false
-    @State var info: String
-    @State private var goalTypeFilter: steps? = nil
-    @State private var stepSelected: String = "CLEANSER"
-    //    @State private var showInfo: String = ""
+    @State var info: String = ""
+    @State private var selectedInfoIndex: Int? = nil
+    //    @State private var stepSelected: String = "CLEANSER"
     
     let steps = Steps()
     let disabled: Color = .gray
+    
+    //    init() {
+    //        _selectedStates = State(initialValue: Array(repeating: false, count: steps.stepsList.count))
+    //
+    //    }
+    
     var body: some View {
-        
-        VStack {
-            Text("Select your products")
-                .font(.system(size: 40))
-                .frame(width: 350)
-                .multilineTextAlignment(.center)
-            Rectangle()
-                .frame(width: 350, height: 1)
-            ForEach(steps.stepsList){
-                step in
-                ZStack{
+        ForEach(steps.stepsList.indices, id: \.self){
+            index in
+            var step = steps.stepsList[index]
+            ZStack{
+                Button(action: {
+                    selectedStates[index].toggle()
+                    if selectedStates[index] {
+                        selectedInfoIndex = index
+                        info = step.info
+                        step.isSelected = true
+                    } else {
+                        selectedInfoIndex = nil
+                    }
+                }, label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.black)
+                            .fill(selectedStates[index] ? step.color : disabled)
+                            .opacity(0.2)
+                            .shadow(radius: 5, x: 0, y: 10)
+                            .frame(width: 360, height:60)
+                        
+                        HStack {
+                            Text(step.pos + ".")
+                                .padding(.leading)
+                            Text(step.name)
+                            Spacer()
+                        }
+                    }
+                    .frame(width: 250.0, height: 60.0)
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                    .padding(.vertical, 6)
+                })
+                HStack {
+                    Spacer(minLength: 300)
                     Button(action: {
-                        isSelected.toggle()
-                        print("ciao")
-                    }, label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.black)
-                                .fill(goalTypeFilter == step ? step.color : disabled)
-                                .opacity(0.2)
-                                .shadow(radius: 5, x: 0, y: 10)
-                                .frame(width: 360, height:60)
-                            
-                            HStack {
-                                Text(step.pos + ".")
-                                    .padding(.leading)
-                                Text(step.name)
-                                Spacer()
-                            }
-                        }
-                        .onTapGesture {
-                            withAnimation(.linear(duration: 0.2)){
-                                if(goalTypeFilter == step){
-                                    goalTypeFilter = nil
-                                }else{
-                                    goalTypeFilter = step
-                                }
-                            }
-                        }
-                        .frame(width: 250.0, height: 60.0)
-                        .foregroundColor(.black)
-                        .padding(.horizontal)
-                        .padding(.vertical, 6)
-                    })
-                    HStack {
-                        Spacer(minLength: 300)
-                        Button(action: {
+                        if selectedStates[index] {
+                            selectedInfoIndex = index
                             info = step.info
                             showInfo.toggle()
-                        }, label: {
-                            Image(systemName: "info.circle")
-                                .foregroundColor(.black)
+                        }
+                    }, label: {
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.black)
+                            .font(.system(size: 20))
+                            .frame(width: 40, height: 30)
+                            .padding()
+                    })
+                    .sheet(isPresented: $showInfo, content: {
+                        VStack {
+                            Text("INFO")
+                                .font(.system(size: 40))
+                                .frame(width: 350)
+                            Rectangle()
+                                .frame(width: 350, height: 2)
+                            
+                            Text(info)
                                 .font(.system(size: 20))
-                                .frame(width: 40, height: 30)
-                                .padding()
-                        })
-                        .sheet(isPresented: $showInfo, content: {
-                            VStack {
-                                Text("INFO")
-                                    .font(.system(size: 40))
-                                    .frame(width: 350)
-                                Rectangle()
-                                    .frame(width: 350, height: 2)
-                                
-                                Text(info)
-                                    .font(.system(size: 20))
-                                    .frame(width: 300)
-                            }
-                        })
-                        Spacer()
-                    }
+                                .frame(width: 300)
+                        }
+                    })
+                    Spacer()
                 }
-                .fontDesign(.serif)
             }
+            .fontDesign(.serif)
         }
     }
 }
 
 
 #Preview {
-    SelectYourProducts(info: "")
+    PageProducts()
 }
