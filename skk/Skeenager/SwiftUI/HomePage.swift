@@ -29,12 +29,14 @@ struct HomePage: View {
                 }, label: {
                     Text("Welcome")
                         .font(.system(size: 30))
+                        .foregroundColor(Color.black)
+                        .padding(.all)
+                        .background(RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.black)
+                            .fill(Color.white)
+                            .shadow(radius: 2, x: 0, y: 5)
+                            )
                         .frame(width: 200, height: 50)
-                        .foregroundColor(.black)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                                .stroke(Color.black, lineWidth: 3)
-                                .shadow(radius: 2, x: 0, y: 5))
                 }).padding(.top)
                 
                 Spacer()
