@@ -19,8 +19,8 @@ struct steps: Hashable, Identifiable {
     var color: Color = .white
 }
 
-class Steps: ObservableObject {
-    @Published var stepsList = [
+class Steps {
+    var stepsList = [
         steps(name: "CLEANSER",
               pos: 0,
               info: "In the morning, wash with a gentle face cleanser designed for your skin type. \nUse a wet washcloth to remove.",

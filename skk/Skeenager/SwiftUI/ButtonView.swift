@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ButtonView: View {
     @Binding var selectedStates: [Bool]
-    @ObservedObject var steps: Steps
+    var steps: Steps
     @State var filterSelected: String
     @State var stepSelected: String
     @State var posSelected: Int
@@ -23,7 +23,7 @@ struct ButtonView: View {
                 HStack{
                     ForEach(steps.stepsList.indices, id: \.self) {
                         index in
-                        var step = steps.stepsList[index]
+                        let step = steps.stepsList[index]
                         if selectedStates[index] == true {
                             Button(action: {
                                 filterSelected = step.filte
@@ -31,7 +31,7 @@ struct ButtonView: View {
                                 posSelected = step.pos
                             }, label: {
                                 
-                                Text(String(step.pos))
+                                Text(String(step.pos+1))
                                     .font(.system(size: 20))
                                     .foregroundColor(Color.black)
                                     .bold(true)
@@ -49,9 +49,9 @@ struct ButtonView: View {
                 
                 Spacer()
                 
-                if posSelected == 7 {
+                if posSelected == 6 {
                     VStack {
-                        Text("Step " + String(posSelected) + ": " + stepSelected)
+                        Text("Step " + String(posSelected+1) + ": " + stepSelected)
                             .font(.system(size: 20))
                             .foregroundColor(Color.black)
                             .bold(true)
@@ -75,7 +75,7 @@ struct ButtonView: View {
                 }
                 
                 else {
-                    Text("Step " + String(posSelected) + ": " + stepSelected)
+                    Text("Step " + String(posSelected+1) + ": " + stepSelected)
                         .font(.system(size: 20))
                         .foregroundColor(Color.black)
                         .bold(true)

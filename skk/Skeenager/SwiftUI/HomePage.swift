@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomePage: View {
-    @StateObject private var steps = Steps()
     @State private var isButtonClicked = false
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     
@@ -25,7 +24,7 @@ struct HomePage: View {
                     .frame(width: 300, height: 2)
                 
                 NavigationLink(destination: {
-                    SelectYourProducts(selectedStates: $selectedStates, steps: steps)
+                    PageProducts()
                         .navigationBarBackButtonHidden(true)
                 }, label: {
                     Text("Welcome")
@@ -45,26 +44,28 @@ struct HomePage: View {
 }
 
 struct PageProducts: View {
-    @StateObject private var steps = Steps()
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     
     var body: some View {
         NavigationStack {
-//            VStack {
-                Text("Select your products")
-                    .font(.system(size: 40))
-                    .frame(width: 350)
-                    .multilineTextAlignment(.center)
-                Rectangle()
-                    .frame(width: 350, height: 1)
-            SelectYourProducts(selectedStates: $selectedStates, steps: steps)
-           
-        NavigationLink {
-            ButtonView(selectedStates: $selectedStates, steps: steps, filterSelected: "", stepSelected: "", posSelected: 0)
+            Text("Select your products")
+                .font(.system(size: 30))
+                .frame(width: 350)
+                .multilineTextAlignment(.center)
+            Rectangle()
+                .frame(width: 350, height: 1)
+            SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+            
+            NavigationLink {
+                ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
             } label: {
-                Text("Ciao")
+                Text("Start") 
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.white)
+                    .padding(.all)
+                    .background(RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.black))
             }
-//            }
         }
         .fontDesign(.serif)
     }
@@ -72,14 +73,14 @@ struct PageProducts: View {
 
 struct SelectYourProducts: View {
     @Binding var selectedStates: [Bool]
-    @ObservedObject var steps: Steps
+    var steps: Steps
     @State var selectedInfo: Bool = false
     @State var showInfo = false
     @State var info: String = ""
     @State private var selectedInfoIndex: Int? = nil
     //    @State private var stepSelected: String = "CLEANSER"
     
-//    @State var steps = Steps()
+    //    @State var steps = Steps()
     let disabled: Color = .gray
     
     //    init() {
@@ -113,7 +114,7 @@ struct SelectYourProducts: View {
                             .frame(width: 360, height:60)
                         
                         HStack {
-                            Text(String(step.pos) + ".")
+                            Text(String(step.pos+1) + ".")
                                 .padding(.leading)
                             Text(step.name)
                             Spacer()
@@ -128,11 +129,9 @@ struct SelectYourProducts: View {
                     Spacer(minLength: 300)
                     Button(action: {
                         selectedInfo.toggle()
-//                        if selectedStates[index] {
-                            selectedInfoIndex = index
-                            info = step.info
-                            showInfo.toggle()
-//                        }
+                        selectedInfoIndex = index
+                        info = step.info
+                        showInfo.toggle()
                     }, label: {
                         Image(systemName: "info.circle")
                             .foregroundColor(.black)
@@ -153,16 +152,10 @@ struct SelectYourProducts: View {
                                 .frame(width: 300)
                         }
                     })
-                    Spacer()
                 }
             }
             .fontDesign(.serif)
         }
-        NavigationLink {
-            ButtonView(selectedStates: $selectedStates, steps: steps, filterSelected: "", stepSelected: "", posSelected: 0)
-            } label: {
-                Text("ciao")
-            }
     }
 }
 

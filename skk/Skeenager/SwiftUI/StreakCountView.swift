@@ -14,10 +14,10 @@ struct StreakCountView: View {
     @State private var access: Bool = UserDefaults.standard.bool(forKey: "access")
     
     init() {
-            // Load last access date from UserDefaults when the view is initialized
-            self._lastActualAccessDate = State(wrappedValue: UserDefaults.standard.object(forKey: "lastActualAccessDate") as? Date)
-            self._lastRecordedAccessDate = State(wrappedValue: UserDefaults.standard.object(forKey: "lastRecordedAccessDate") as? Date)
-        }
+        // Load last access date from UserDefaults when the view is initialized
+        self._lastActualAccessDate = State(wrappedValue: UserDefaults.standard.object(forKey: "lastActualAccessDate") as? Date)
+        self._lastRecordedAccessDate = State(wrappedValue: UserDefaults.standard.object(forKey: "lastRecordedAccessDate") as? Date)
+    }
     
     var body: some View {
         VStack {
@@ -29,18 +29,18 @@ struct StreakCountView: View {
             }
         }
     }
-
+    
     
     
     
     func handleLogin() {
         let currentDate = Date()
-                
+        
         // Check if it's the first access or if the last access happened yesterday
         if (lastActualAccessDate == nil  //first access
             || Calendar.current.isDate(lastActualAccessDate!,
                                        inSameDayAs: Calendar.current.date(byAdding: .day,
-                                                                          value: -1, 
+                                                                          value: -1,
                                                                           to: currentDate)!))
             && (lastRecordedAccessDate != currentDate) {
             
