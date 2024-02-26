@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomePage: View {
-    
+    @StateObject private var steps = Steps()
     @State private var isButtonClicked = false
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     
@@ -25,7 +25,8 @@ struct HomePage: View {
                     .frame(width: 300, height: 2)
                 
                 NavigationLink(destination: {
-                    SelectYourProducts(selectedStates: $selectedStates)
+                    SelectYourProducts(selectedStates: $selectedStates, steps: steps)
+                        .navigationBarBackButtonHidden(true)
                 }, label: {
                     Text("Welcome")
                         .font(.system(size: 30))
@@ -34,54 +35,51 @@ struct HomePage: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: 40)
                                 .stroke(Color.black, lineWidth: 3)
-                                .shadow(radius: 2, x: 0, y: 5)
-                        )
-                    
+                                .shadow(radius: 2, x: 0, y: 5))
                 }).padding(.top)
                 
                 Spacer()
-                
-                
-                
             }.fontDesign(.serif)
-        }.navigationBarBackButtonHidden(true)
+        }
     }
 }
 
 struct PageProducts: View {
+    @StateObject private var steps = Steps()
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     
     var body: some View {
         NavigationStack {
-            VStack {
+//            VStack {
                 Text("Select your products")
                     .font(.system(size: 40))
                     .frame(width: 350)
                     .multilineTextAlignment(.center)
                 Rectangle()
                     .frame(width: 350, height: 1)
-//                NavigationLink(destination: {
-//                    ButtonView(filterSelected: "", stepSelected: "", posSelected: "")
-//                }, label: {
-//                    Text("ciao")
-//                })
-                SelectYourProducts(selectedStates: $selectedStates)
-                
+            SelectYourProducts(selectedStates: $selectedStates, steps: steps)
+           
+        NavigationLink {
+            ButtonView(steps: steps, filterSelected: "", stepSelected: "", posSelected: "")
+            } label: {
+                Text("Ciao")
             }
-        }.fontDesign(.serif)
-            .navigationBarBackButtonHidden(true)
+//            }
+        }
+        .fontDesign(.serif)
     }
 }
 
 struct SelectYourProducts: View {
     @Binding var selectedStates: [Bool]
+    @ObservedObject var steps: Steps
     @State var selectedInfo: Bool = false
     @State var showInfo = false
     @State var info: String = ""
     @State private var selectedInfoIndex: Int? = nil
     //    @State private var stepSelected: String = "CLEANSER"
     
-    let steps = Steps()
+//    @State var steps = Steps()
     let disabled: Color = .gray
     
     //    init() {
@@ -100,6 +98,7 @@ struct SelectYourProducts: View {
                         selectedInfoIndex = index
                         info = step.info
                         step.isSelected = true
+                        print(step.isSelected)
                     } else {
                         selectedInfoIndex = nil
                     }
@@ -158,6 +157,11 @@ struct SelectYourProducts: View {
             }
             .fontDesign(.serif)
         }
+        NavigationLink {
+            ButtonView(steps: steps, filterSelected: "", stepSelected: "", posSelected: "")
+            } label: {
+                Text("ciao")
+            }
     }
 }
 
