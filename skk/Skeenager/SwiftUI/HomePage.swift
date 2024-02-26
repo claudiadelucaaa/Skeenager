@@ -60,7 +60,7 @@ struct PageProducts: View {
             SelectYourProducts(selectedStates: $selectedStates, steps: steps)
            
         NavigationLink {
-            ButtonView(steps: steps, filterSelected: "", stepSelected: "", posSelected: "")
+            ButtonView(selectedStates: $selectedStates, steps: steps, filterSelected: "", stepSelected: "", posSelected: 0)
             } label: {
                 Text("Ciao")
             }
@@ -98,7 +98,8 @@ struct SelectYourProducts: View {
                         selectedInfoIndex = index
                         info = step.info
                         step.isSelected = true
-                        print(step.isSelected)
+                        print(selectedStates[index])
+                        print(index)
                     } else {
                         selectedInfoIndex = nil
                     }
@@ -112,7 +113,7 @@ struct SelectYourProducts: View {
                             .frame(width: 360, height:60)
                         
                         HStack {
-                            Text(step.pos + ".")
+                            Text(String(step.pos) + ".")
                                 .padding(.leading)
                             Text(step.name)
                             Spacer()
@@ -158,7 +159,7 @@ struct SelectYourProducts: View {
             .fontDesign(.serif)
         }
         NavigationLink {
-            ButtonView(steps: steps, filterSelected: "", stepSelected: "", posSelected: "")
+            ButtonView(selectedStates: $selectedStates, steps: steps, filterSelected: "", stepSelected: "", posSelected: 0)
             } label: {
                 Text("ciao")
             }
@@ -167,5 +168,5 @@ struct SelectYourProducts: View {
 
 
 #Preview {
-    PageProducts()
+    HomePage()
 }

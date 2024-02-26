@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ButtonView: View {
-    
+    @Binding var selectedStates: [Bool]
     @ObservedObject var steps: Steps
     @State var filterSelected: String
     @State var stepSelected: String
-    @State var posSelected: String
+    @State var posSelected: Int
     @State var lastProduct: Bool = false
      
     var body: some View {
@@ -23,15 +23,15 @@ struct ButtonView: View {
                 HStack{
                     ForEach(steps.stepsList.indices, id: \.self) {
                         index in
-                        let step = steps.stepsList[index]
-                        if step.isSelected == true {
+                        var step = steps.stepsList[index]
+                        if selectedStates[index] == true {
                             Button(action: {
                                 filterSelected = step.filte
                                 stepSelected = step.name
                                 posSelected = step.pos
                             }, label: {
                                 
-                                Text(step.pos)
+                                Text(String(step.pos))
                                     .font(.system(size: 20))
                                     .foregroundColor(Color.black)
                                     .bold(true)
@@ -49,9 +49,9 @@ struct ButtonView: View {
                 
                 Spacer()
                 
-                if posSelected == "7" {
+                if posSelected == 7 {
                     VStack {
-                        Text("Step " + posSelected + ": " + stepSelected)
+                        Text("Step " + String(posSelected) + ": " + stepSelected)
                             .font(.system(size: 20))
                             .foregroundColor(Color.black)
                             .bold(true)
@@ -75,7 +75,7 @@ struct ButtonView: View {
                 }
                 
                 else {
-                    Text("Step " + posSelected + ": " + stepSelected)
+                    Text("Step " + String(posSelected) + ": " + stepSelected)
                         .font(.system(size: 20))
                         .foregroundColor(Color.black)
                         .bold(true)
@@ -87,7 +87,8 @@ struct ButtonView: View {
             }
             }
         .onAppear {
-            print(steps.stepsList)
+            print(selectedStates)
+            print(index)
         }
         }
     }
@@ -106,7 +107,7 @@ struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
 }
 
 
-#Preview {
-    ButtonView(steps: Steps(), filterSelected: "", stepSelected: "", posSelected: "")
-}
-
+//#Preview {
+//    ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
+//}
+//
