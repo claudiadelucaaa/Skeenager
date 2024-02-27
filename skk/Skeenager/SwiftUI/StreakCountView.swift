@@ -30,12 +30,8 @@ struct StreakCountView: View {
         }
     }
     
-    
-    
-    
     func handleLogin() {
         let currentDate = Date()
-        
         // Check if it's the first access or if the last access happened yesterday
         if (lastActualAccessDate == nil  //first access
             || Calendar.current.isDate(lastActualAccessDate!,
@@ -43,15 +39,12 @@ struct StreakCountView: View {
                                                                           value: -1,
                                                                           to: currentDate)!))
             && (lastRecordedAccessDate != currentDate) {
-            
             streakCount += 1 // Update streak count
             lastRecordedAccessDate = currentDate // Save the current date as the last recorded access date
             print(lastActualAccessDate ?? " ")
             print(lastRecordedAccessDate ?? " ")
             print(currentDate)
         }
-        
-        
         else {
             streakCount = 1 // Reset streak count
         }

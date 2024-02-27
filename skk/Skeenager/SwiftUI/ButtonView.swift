@@ -9,28 +9,27 @@ import SwiftUI
 
 struct ButtonView: View {
     @Binding var selectedStates: [Bool]
+    //    @Binding var streakCount: Int
     var steps: Steps
     @State var filterSelected: String
     @State var stepSelected: String
     @State var posSelected: Int
-    @State var lastProduct: Bool = false
-     
+    
     var body: some View {
         ZStack{
             BasicUIViewControllerRepresentable(filter: $filterSelected)
                 .ignoresSafeArea()
             VStack{
                 HStack{
-                    ForEach(steps.stepsList.indices, id: \.self) {
-                        index in
-                        let step = steps.stepsList[index]
-                        if selectedStates[index] == true {
+                    ForEach(steps.stepsList.indices, id: \.self) { ind in
+                        let step = steps.stepsList[ind]
+                        if selectedStates[ind] == true {
+                            
                             Button(action: {
                                 filterSelected = step.filte
                                 stepSelected = step.name
                                 posSelected = step.pos
                             }, label: {
-                                
                                 Text(String(step.pos+1))
                                     .font(.system(size: 20))
                                     .foregroundColor(Color.black)
@@ -40,16 +39,14 @@ struct ButtonView: View {
                                         .fill(Color.gray)
                                         .opacity(0.5)
                                         .frame(width: 40.0, height: 40.0))
-                        })
+                            })
                         }
-                        
-                           
                     }
                 }
                 
                 Spacer()
                 
-                if posSelected == 6 {
+                if posSelected == selectedStates.lastIndex(where: { $0 }) {
                     VStack {
                         Text("Step " + String(posSelected+1) + ": " + stepSelected)
                             .font(.system(size: 20))
@@ -58,9 +55,10 @@ struct ButtonView: View {
                             .padding(.all)
                             .background(RoundedRectangle(cornerRadius: 20)
                                 .fill(Color.gray)
-                            .opacity(0.5))
-                        Button {
-                            
+                                .opacity(0.5))
+                        NavigationLink {
+                            HomePage()
+                                .navigationBarBackButtonHidden()
                         } label: {
                             Text("Finish!")
                                 .font(.system(size: 20))
@@ -85,13 +83,13 @@ struct ButtonView: View {
                             .opacity(0.5))
                 }
             }
-            }
-        .onAppear {
-            print(selectedStates)
-            print(index)
         }
-        }
+        //        .onAppear {
+        //            print(selectedStates)
+        //            print(index)
+        //        }
     }
+}
 
 struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
     @Binding var filter: String
@@ -105,9 +103,3 @@ struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
         print("funzione chiamata")
     }
 }
-
-
-//#Preview {
-//    ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
-//}
-//
