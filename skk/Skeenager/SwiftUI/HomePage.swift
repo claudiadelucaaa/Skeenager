@@ -17,8 +17,9 @@ struct HomePage: View {
                 Spacer()
                 
                 Text("Skeenager")
-                    .font(.system(size: 55))
+                    .font(Font.custom("Urbanist-Regular", size: 55, relativeTo: .title))
                     .frame(height: 80)
+                
                 
                 Rectangle()
                     .frame(width: 300, height: 2)
@@ -40,7 +41,7 @@ struct HomePage: View {
                 }).padding(.top)
                 
                 Spacer()
-            }.fontDesign(.serif)
+            }
         }
     }
 }
@@ -62,7 +63,7 @@ struct PageProducts: View {
                 ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
             } label: {
                 Text("Start") 
-                    .font(.system(size: 20))
+                    .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
                     .foregroundColor(Color.white)
                     .padding(.all)
                     .background(RoundedRectangle(cornerRadius: 20)

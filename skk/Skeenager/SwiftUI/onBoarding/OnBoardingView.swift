@@ -21,13 +21,15 @@ struct OnboardingView: View {
                 OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
                                                       systemImageName: "clock.badge.checkmark",
                                                       title: "Quick and Accurate",
-                                                      subtitle: "This app is quick and accuracte with all the measurements.")).tag(1)
+                                                      subtitle: "Use and unlock lot of filter that will guide your skincare."))
+                .tag(1)
                 
                 // Example screen 2
                 OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
                                                       systemImageName: "dollarsign.circle",
                                                       title: "Make money",
-                                                      subtitle: "With this app you can make money while you sleep.")).tag(2)
+                                                      subtitle: "With this app you can make money while you sleep."))
+                .tag(2)
             }
             // Allows you to swipe through the tabs,
             // if you only have one onboarding screen, the dots at the bottom of the screen that indicate what tab you are on, won't be displayed

@@ -13,20 +13,20 @@ struct OnBoardingScreen: View {
         var body: some View {
             ScrollView {
                 VStack {
-                    Image(systemName: item.systemImageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 200, maxHeight: 200)
-                        .padding(.bottom)
+//                    Image(systemName: item.systemImageName)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(maxWidth: 200, maxHeight: 200)
+//                        .padding(.bottom)
                     
                     VStack(alignment: .leading) {
                         Text(item.title)
-                            .bold()
-                            .font(.title)
+                            .font(Font.custom("Urbanist-Regular", size: 45, relativeTo: .title))
                             .padding(.bottom)
                         
                         Text(item.subtitle)
                             .padding(.bottom)
+                            .font(Font.custom("Urbanist-Regular", size: 35, relativeTo: .title2))
                     }
                 }
                 .padding()
@@ -40,7 +40,7 @@ struct OnBoardingScreen: View {
 #Preview {
     OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
                                           systemImageName: "clock.badge.checkmark",
-                                          title: "Quick and Accurate",
-                                          subtitle: "This app is quick and accuracte with all the measurements."))
+                                          title: "Titolo Riassuntivo",
+                                          subtitle: "Descrizione abbastanza breve della feature."))
 //    OnBoardingScreen(item: OnboardingItem(background: "", systemImageName: "", title: "", subtitle: ""))
 }
