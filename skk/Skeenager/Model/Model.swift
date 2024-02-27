@@ -66,33 +66,14 @@ class Steps {
     ]
 }
 
-//enum FilterEnum : String, Codable, CaseIterable {
-//    case cleanser = "Cleanser"
-//    case toner = "Toner"
-//    case serum = "Serum"
-//    case treatment = "Treatment"
-//    case eyeCream = "EyeCream"
-//    case moisturizer = "Moisturizer"
-//    case sunscreen = "Sunscreen"
-//    
-//    var filter: String {
-//        switch self{
-//        case .cleanser:
-//            return "rainbow"
-//        case .toner:
-//            return "rainbow"
-//        case .serum:
-//            return "rainbow"
-//        case .treatment:
-//            return "rainbow"
-//        case .eyeCream:
-//            return "rainbow"
-//        case .moisturizer:
-//            return "rainbow"
-//        case .sunscreen:
-//            return "rainbow"
-//        }
-//    }
-//}
-//
+struct OnboardingItem: Identifiable {
+    let id = UUID()
+    let background: String
+    let systemImageName: String
+    let title: String
+    let subtitle: String
+}
 
+class Constants {
+    static let currentOnboardingVersion = "onboardingVersion_1.0.0"
+}

@@ -5,13 +5,9 @@
 //  Created by Raffaele Marino  on 16/02/24.
 // Claudia ammazzerà raffaele down
 
-//import AVKit
 import Vision
 import ARKit
 import CoreML
-//import SceneKit
-//import SwiftUI
-
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ARSessionDelegate {
 
@@ -22,9 +18,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var nameFilter: String = "rainbow"
     
     func changefilter(nameFilter: String) {
-        
         self.nameFilter = nameFilter
-        
     }
     
     override func viewDidLoad() {

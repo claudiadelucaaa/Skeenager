@@ -10,9 +10,15 @@ import SwiftUI
 
 @main
 struct ContentView: App {
+    @AppStorage(Constants.currentOnboardingVersion) private var hasSeenOnboardingView = false
+    
     var body: some Scene {
         WindowGroup {
-            HomePage()
+            if hasSeenOnboardingView {
+                HomePage()
+            } else {
+                OnboardingView()
+            }
         }
     }
 }
