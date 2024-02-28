@@ -18,21 +18,21 @@ struct OnboardingView: View {
         ZStack {
             TabView(selection: $selectedView) {
                 // Screen 1
-                OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
+                OnBoardingScreen(item: OnboardingItem(background: "onBoard0",
                                                       systemImageName: "clock.badge.checkmark",
                                                       title: "Quick and Accurate",
                                                       subtitle: "Use and unlock lot of filter that will guide your skincare."))
                 .tag(1)
                 
                 // Screen 2
-                OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
+                OnBoardingScreen(item: OnboardingItem(background: "onBoard1",
                                                       systemImageName: "dollarsign.circle",
                                                       title: "Select your Products.",
                                                       subtitle: "Track of every step using your products and find new one!"))
                 .tag(2)
                 
                 // Screen 3
-                OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
+                OnBoardingScreen(item: OnboardingItem(background: "onBoard0",
                                                       systemImageName: "dollarsign.circle",
                                                       title: "Make money",
                                                       subtitle: "Track of every step using your products and find new one!"))
