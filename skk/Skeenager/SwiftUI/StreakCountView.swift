@@ -54,7 +54,6 @@ struct StreakCountView: View {
         UserDefaults.standard.set(lastActualAccessDate, forKey: "lastActualAccessDate") // Save last actual access date
         UserDefaults.standard.set(lastRecordedAccessDate, forKey: "lastRecordedAccessDate") // Save last recorded access date
     }
-    
 }
 
 

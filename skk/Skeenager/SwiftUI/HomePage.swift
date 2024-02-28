@@ -9,39 +9,23 @@ import SwiftUI
 
 struct HomePage: View {
     @State private var isButtonClicked = false
+    @State var scale = 0.5
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    @State var currentView: CurrentView = .logo
+    @State var currentIndex = 0
+    
+    @Binding var changeView: Bool
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                
-                Text("Skeenager")
-                    .font(Font.custom("Urbanist-Regular", size: 55, relativeTo: .title))
-                    .frame(height: 80)
-                
-                
-                Rectangle()
-                    .frame(width: 300, height: 2)
-                
-                NavigationLink(destination: {
-                    PageProducts()
-                        .navigationBarBackButtonHidden(true)
-                }, label: {
-                    Text("Welcome")
-                        .font(.system(size: 30))
-                        .foregroundColor(Color.black)
-                        .padding(.all)
-                        .background(RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.black)
-                            .fill(Color.white)
-                            .shadow(radius: 2, x: 0, y: 5)
-                            )
-                        .frame(width: 200, height: 50)
-                }).padding(.top)
-                
-                Spacer()
-            }
+        switch currentView {
+        case .logo:
+            AppLogo(currentView: $currentView)
+        case .theme:
+            ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex)
+        case .products:
+            PageProducts()
+        case .ar:
+            ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
         }
     }
 }
@@ -52,7 +36,7 @@ struct PageProducts: View {
     var body: some View {
         NavigationStack {
             Text("Select your products")
-                .font(.system(size: 30))
+                .font(Font.custom("Urbanist-SemiBold", size: 30, relativeTo: .title))
                 .frame(width: 350)
                 .multilineTextAlignment(.center)
             Rectangle()
@@ -62,7 +46,7 @@ struct PageProducts: View {
             NavigationLink {
                 ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
             } label: {
-                Text("Start") 
+                Text("Start")
                     .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
                     .foregroundColor(Color.white)
                     .padding(.all)
@@ -70,26 +54,20 @@ struct PageProducts: View {
                         .fill(Color.black))
             }
         }
-        .fontDesign(.serif)
     }
 }
 
 struct SelectYourProducts: View {
     @Binding var selectedStates: [Bool]
-    var steps: Steps
+    
     @State var selectedInfo: Bool = false
     @State var showInfo = false
     @State var info: String = ""
+    @State var name: String = ""
     @State private var selectedInfoIndex: Int? = nil
-    //    @State private var stepSelected: String = "CLEANSER"
     
-    //    @State var steps = Steps()
+    var steps: Steps
     let disabled: Color = .gray
-    
-    //    init() {
-    //        _selectedStates = State(initialValue: Array(repeating: false, count: steps.stepsList.count))
-    //
-    //    }
     
     var body: some View {
         ForEach(steps.stepsList.indices, id: \.self){
@@ -121,7 +99,7 @@ struct SelectYourProducts: View {
                                 .padding(.leading)
                             Text(step.name)
                             Spacer()
-                        }
+                        }.font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
                     }
                     .frame(width: 250.0, height: 60.0)
                     .foregroundColor(.black)
@@ -133,6 +111,7 @@ struct SelectYourProducts: View {
                     Button(action: {
                         selectedInfo.toggle()
                         selectedInfoIndex = index
+                        name = step.name
                         info = step.info
                         showInfo.toggle()
                     }, label: {
@@ -144,25 +123,22 @@ struct SelectYourProducts: View {
                     })
                     .sheet(isPresented: $showInfo, content: {
                         VStack {
-                            Text("INFO")
-                                .font(.system(size: 40))
+                            Text(name)
                                 .frame(width: 350)
                             Rectangle()
                                 .frame(width: 350, height: 2)
-                            
                             Text(info)
-                                .font(.system(size: 20))
                                 .frame(width: 300)
                         }
+                        .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
                     })
                 }
             }
-            .fontDesign(.serif)
         }
     }
 }
 
 
-#Preview {
-    HomePage()
-}
+//#Preview {
+//    HomePage()
+//}

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ButtonView: View {
     @Binding var selectedStates: [Bool]
-    //    @Binding var streakCount: Int
     var steps: Steps
     @State var filterSelected: String
     @State var stepSelected: String
@@ -56,14 +55,14 @@ struct ButtonView: View {
                             .background(RoundedRectangle(cornerRadius: 20)
                                 .fill(Color.gray)
                                 .opacity(0.5))
+                        
                         NavigationLink {
-                            HomePage()
+                            PageProducts()
                                 .navigationBarBackButtonHidden()
                         } label: {
                             Text("Finish!")
                                 .font(.system(size: 20))
                                 .foregroundColor(Color.black)
-                                .bold(true)
                                 .padding(.all)
                                 .background(RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.green)
@@ -84,10 +83,6 @@ struct ButtonView: View {
                 }
             }
         }
-        //        .onAppear {
-        //            print(selectedStates)
-        //            print(index)
-        //        }
     }
 }
 

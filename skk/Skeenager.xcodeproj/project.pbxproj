@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		651A296C2B84A75A004897DE /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A296B2B84A75A004897DE /* ButtonView.swift */; };
+		6543F8F32B8E5692002D4C0B /* AppLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543F8F22B8E5692002D4C0B /* AppLogo.swift */; };
 		6563C51E2B84C0680001C761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563C51D2B84C0680001C761 /* ContentView.swift */; };
 		65AB13AC2B88991D000282EF /* StreakCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB13AB2B88991D000282EF /* StreakCountView.swift */; };
 		65E1BFA72B8DE02700E9A98B /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E1BFA62B8DE02700E9A98B /* OnBoardingScreen.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		651A296B2B84A75A004897DE /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		6543F8F22B8E5692002D4C0B /* AppLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogo.swift; sourceTree = "<group>"; };
 		6563C51D2B84C0680001C761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		65AB13AB2B88991D000282EF /* StreakCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCountView.swift; sourceTree = "<group>"; };
 		65E1BFA62B8DE02700E9A98B /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
@@ -142,8 +144,9 @@
 			children = (
 				65E1BFAA2B8DE55C00E9A98B /* onBoarding */,
 				6563C51D2B84C0680001C761 /* ContentView.swift */,
-				651A296B2B84A75A004897DE /* ButtonView.swift */,
+				6543F8F22B8E5692002D4C0B /* AppLogo.swift */,
 				ED5BD9862B86AA7400151531 /* HomePage.swift */,
+				651A296B2B84A75A004897DE /* ButtonView.swift */,
 				65EFE89E2B87856400F65786 /* ThemeSelectorView.swift */,
 				65AB13AB2B88991D000282EF /* StreakCountView.swift */,
 			);
@@ -281,6 +284,7 @@
 			files = (
 				6563C51E2B84C0680001C761 /* ContentView.swift in Sources */,
 				65EFE89F2B87856400F65786 /* ThemeSelectorView.swift in Sources */,
+				6543F8F32B8E5692002D4C0B /* AppLogo.swift in Sources */,
 				ED5BD9872B86AA7400151531 /* HomePage.swift in Sources */,
 				65E1BFA92B8DE31A00E9A98B /* OnBoardingView.swift in Sources */,
 				65E1BFA72B8DE02700E9A98B /* OnBoardingScreen.swift in Sources */,

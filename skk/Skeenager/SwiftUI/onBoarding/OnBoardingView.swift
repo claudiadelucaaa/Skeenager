@@ -10,43 +10,50 @@ import SwiftUI
 
 struct OnboardingView: View {
     @State private var selectedView = 1
-    let maxNumberOfScreens = 2
+    let maxNumberOfScreens = 3
     // We set this value to false (in case it doesn't already exist)
     @AppStorage(Constants.currentOnboardingVersion) private var hasSeenOnboardingView = false
     
     var body: some View {
-        VStack {
+        ZStack {
             TabView(selection: $selectedView) {
-                // Example screen 1
+                // Screen 1
                 OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
                                                       systemImageName: "clock.badge.checkmark",
                                                       title: "Quick and Accurate",
                                                       subtitle: "Use and unlock lot of filter that will guide your skincare."))
                 .tag(1)
                 
-                // Example screen 2
+                // Screen 2
+                OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
+                                                      systemImageName: "dollarsign.circle",
+                                                      title: "Select your Products.",
+                                                      subtitle: "Track of every step using your products and find new one!"))
+                .tag(2)
+                
+                // Screen 3
                 OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
                                                       systemImageName: "dollarsign.circle",
                                                       title: "Make money",
-                                                      subtitle: "With this app you can make money while you sleep."))
-                .tag(2)
+                                                      subtitle: "Track of every step using your products and find new one!"))
+                .tag(3)
             }
-            // Allows you to swipe through the tabs,
-            // if you only have one onboarding screen, the dots at the bottom of the screen that indicate what tab you are on, won't be displayed
+            .ignoresSafeArea()
             .tabViewStyle(.page)
-            // Displays the background behind the tab indicator dots so that they can been seen in light and dark mode
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
             
-            Button(selectedView == maxNumberOfScreens ? "Done" : "Next") {
+            Button {
                 if selectedView == maxNumberOfScreens {
-                    // Save the completedOnboarding state and exit the view
                     hasSeenOnboardingView = true
                 } else {
                     selectedView += 1
                 }
+            } label: {
+                Text(selectedView == maxNumberOfScreens ? "Done" : "Next")
             }
-            .buttonStyle(.borderedProminent)
-            .padding(.vertical)
+            .buttonStyle(.bordered)
+            .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
+            .foregroundStyle(Color.black)
+            .padding(.top, 660)
         }
     }
 }

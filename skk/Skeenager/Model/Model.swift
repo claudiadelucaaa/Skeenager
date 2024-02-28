@@ -19,6 +19,33 @@ struct steps: Hashable, Identifiable {
     var color: Color = .white
 }
 
+struct filter: Identifiable {
+    var id = UUID()
+    var name: String
+    var isLock: Bool = false
+    var image: String
+}
+
+class Filter {
+    var filterList = [
+        filter(name: "filtro1", isLock: true, image: "1"),
+        filter(name: "filtro2", image: "2"),
+        filter(name: "filtro3", image: "3")
+    ]
+}
+
+struct OnboardingItem: Identifiable {
+    let id = UUID()
+    let background: String
+    let systemImageName: String
+    let title: String
+    let subtitle: String
+}
+
+class Constants {
+    static let currentOnboardingVersion = "onboardingVersion_1.0.0"
+}
+
 class Steps {
     var stepsList = [
         steps(name: "CLEANSER",
@@ -66,14 +93,9 @@ class Steps {
     ]
 }
 
-struct OnboardingItem: Identifiable {
-    let id = UUID()
-    let background: String
-    let systemImageName: String
-    let title: String
-    let subtitle: String
-}
-
-class Constants {
-    static let currentOnboardingVersion = "onboardingVersion_1.0.0"
+enum CurrentView {
+    case logo
+    case theme
+    case products
+    case ar
 }

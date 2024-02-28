@@ -11,7 +11,6 @@ struct OnBoardingScreen: View {
     let item: OnboardingItem
             
         var body: some View {
-            ScrollView {
                 VStack {
 //                    Image(systemName: item.systemImageName)
 //                        .resizable()
@@ -28,9 +27,11 @@ struct OnBoardingScreen: View {
                             .padding(.bottom)
                             .font(Font.custom("Urbanist-Regular", size: 35, relativeTo: .title2))
                     }
+                    .foregroundStyle(Color.black)
+                    Spacer()
                 }
                 .padding()
-            }.background(
+                .background(
                 Image(item.background)
                     .ignoresSafeArea()
                     .scaledToFit())
