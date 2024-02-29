@@ -37,7 +37,7 @@ struct PageProducts: View {
         NavigationStack {
             VStack {
                 Spacer()
-                Text("What products do you want to use today?")
+                Text(LocalizedStringKey("What products do you want to use today?"))
                     .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
                     .frame(width: 350)
                     .multilineTextAlignment(.leading)
@@ -47,7 +47,7 @@ struct PageProducts: View {
                 NavigationLink {
                     ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
                 } label: {
-                    Text("Start")
+                    Text(LocalizedStringKey("Start"))
                         .font(Font.custom("Urbanist-Regular", size: 25, relativeTo: .body))
                         .foregroundColor(Color.white)
                         .frame(width: 340, height: 63, alignment: .center)
@@ -135,7 +135,7 @@ struct SelectYourProducts: View {
                         }
                     }, label: {
                         ZStack {
-                            Text(step.name)
+                            Text(LocalizedStringKey(step.name))
                                 .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
                         }
                         .padding()

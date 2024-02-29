@@ -19,11 +19,11 @@ struct OnBoardingScreen: View {
 //                        .padding(.bottom)
                     
                     VStack(alignment: .leading) {
-                        Text(item.title)
+                        Text(LocalizedStringKey(item.title))
                             .font(Font.custom("Urbanist-Regular", size: 45, relativeTo: .title))
                             .padding(.bottom)
                         
-                        Text(item.subtitle)
+                        Text(LocalizedStringKey(item.subtitle))
                             .padding(.bottom)
                             .font(Font.custom("Urbanist-Regular", size: 35, relativeTo: .title2))
                     }

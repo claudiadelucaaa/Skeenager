@@ -29,7 +29,7 @@ struct ThemeSelectorView: View {
                     RoundedRectangle(cornerRadius: 40)
                         .foregroundStyle(Color.black)
                         .frame(height: 60)
-                    Text("Start")
+                    Text(LocalizedStringKey("Start"))
                         .font(Font.custom("Urbanist-Regular", size: 20))
                         .foregroundStyle(Color.white)
                 }.padding(.all)
@@ -51,10 +51,10 @@ struct FilterScrollView: View {
     //    DA ORA IN POI
     var body: some View {
         VStack {
-            Text("Choose your Theme")
+            Text(LocalizedStringKey("Choose your Theme"))
                 .font(Font.custom("Urbanist-SemiBold", size: 30))
                 .padding(.bottom)
-            Text("be guided by the theme that represents you the most!")
+            Text(LocalizedStringKey("Be guided by the theme that represents you the most!"))
                 .font(Font.custom("Urbanist-Regular", size: 13))
                 .multilineTextAlignment(.center)
                 .frame(width: 200)
@@ -72,7 +72,7 @@ struct FilterScrollView: View {
                         
                         // Use the image name as a tag
                         
-                        Text(filter.name)
+                        Text(LocalizedStringKey(filter.name))
                             .font(Font.custom("Urbanist-Regular", size: 20))
                         
                     }.tag(index)

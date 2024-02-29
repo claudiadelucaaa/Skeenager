@@ -20,7 +20,7 @@ struct OnboardingView: View {
                 // Screen 1
                 OnBoardingScreen(item: OnboardingItem(background: "onBoard0",
                                                       systemImageName: "clock.badge.checkmark",
-                                                      title: "Quick and Accurate",
+                                                      title: "Skin Filter",
                                                       subtitle: "Use and unlock lot of filter that will guide your skincare."))
                 .tag(1)
                 

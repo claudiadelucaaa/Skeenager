@@ -23,6 +23,6 @@ struct ContentView: App {
             } else {
                 OnboardingView()
             }
-        }
+        }.environment(\.locale, .init(identifier: "it"))
     }
 }

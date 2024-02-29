@@ -45,9 +45,9 @@ struct ButtonView: View {
                 
                 Spacer()
                 
-                if posSelected == selectedStates.lastIndex(where: { $0 }) {
+               
                     VStack {
-                        Text("Step " + String(posSelected+1) + ": " + stepSelected)
+                        Text(LocalizedStringKey("Step" + " " + String(posSelected+1) + ": " + stepSelected))
                             .font(.system(size: 20))
                             .foregroundColor(Color.black)
                             .bold(true)
@@ -56,11 +56,11 @@ struct ButtonView: View {
                                 .fill(Color.gray)
                                 .opacity(0.5))
                         
+                if posSelected == selectedStates.lastIndex(where: { $0 }) {
                         NavigationLink {
                             PageProducts()
-                                .navigationBarBackButtonHidden()
                         } label: {
-                            Text("Finish!")
+                            Text(LocalizedStringKey("Finish"))
                                 .font(.system(size: 20))
                                 .foregroundColor(Color.black)
                                 .padding(.all)
@@ -70,21 +70,11 @@ struct ButtonView: View {
                         }
                     }
                 }
-                
-                else {
-                    Text("Step " + String(posSelected+1) + ": " + stepSelected)
-                        .font(.system(size: 20))
-                        .foregroundColor(Color.black)
-                        .bold(true)
-                        .padding(.all)
-                        .background(RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.gray)
-                            .opacity(0.5))
-                }
             }
         }
     }
 }
+
 
 struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
     @Binding var filter: String
