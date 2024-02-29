@@ -46,14 +46,14 @@ struct FilterScrollView: View {
                 Text(LocalizedStringKey("Choose your Theme"))
                     .font(Font.custom("Urbanist-SemiBold", size: 30))
                     .foregroundStyle(Color.black)
-
+                
                 Text(LocalizedStringKey("Be guided by the theme that represents you the most!"))
                     .font(Font.custom("Urbanist-Regular", size: 20))
                     .foregroundStyle(Color.secondary)
-                               
+                
             }.frame(width: 300)
-             .multilineTextAlignment(.center)
-             .padding(.bottom)
+                .multilineTextAlignment(.center)
+                .padding(.bottom)
             
             ZStack{
                 ForEach(filters.filterList.indices, id: \.self) { index in

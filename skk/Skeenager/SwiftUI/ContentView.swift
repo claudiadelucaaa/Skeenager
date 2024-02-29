@@ -19,7 +19,7 @@ struct ContentView: App {
         WindowGroup {
             if hasSeenOnboardingView {
                 HomePage(currentIndex: currentIndex, changeView: $changeView)
-//                OnboardingView()
+                //                OnboardingView()
             } else {
                 OnboardingView()
             }

@@ -117,15 +117,15 @@ struct SelectYourProducts: View {
     let horizontalSpacing: CGFloat = -20
     
     private func saveSelectedStates() {
-            UserDefaults.standard.set(selectedStates, forKey: "selectedStates")
+        UserDefaults.standard.set(selectedStates, forKey: "selectedStates")
+    }
+    
+    // Retrieve the selectedStates from UserDefaults
+    private func loadSelectedStates() {
+        if let savedSelectedStates = UserDefaults.standard.array(forKey: "selectedStates") as? [Bool] {
+            selectedStates = savedSelectedStates
         }
-
-        // Retrieve the selectedStates from UserDefaults
-        private func loadSelectedStates() {
-            if let savedSelectedStates = UserDefaults.standard.array(forKey: "selectedStates") as? [Bool] {
-                selectedStates = savedSelectedStates
-            }
-        }
+    }
     
     var body: some View {
         OverflowLayout(spacing: 16) {

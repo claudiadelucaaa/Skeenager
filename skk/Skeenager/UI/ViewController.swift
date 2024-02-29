@@ -10,7 +10,7 @@ import ARKit
 import CoreML
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ARSessionDelegate {
-
+    
     let sceneView = ARSCNView(frame: UIScreen.main.bounds)
     
     var contentNode: SCNNode?
@@ -35,15 +35,15 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     override func viewDidAppear(_ animated: Bool) {
         print("HELLO I AM HERE")
     }
-
-
+    
+    
 }
 
 extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
         guard let sceneView = renderer as? ARSCNView,
-            anchor is ARFaceAnchor else { return nil }
+              anchor is ARFaceAnchor else { return nil }
         
         let faceGeometry = ARSCNFaceGeometry(device: sceneView.device!)!
         let material = faceGeometry.firstMaterial!
@@ -54,32 +54,32 @@ extension ViewController: ARSCNViewDelegate {
         contentNode = SCNNode(geometry: faceGeometry)
         return contentNode
     }
-
+    
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         
         guard let faceAnchor = anchor as? ARFaceAnchor,
-            let faceGeometry = node.geometry as? ARSCNFaceGeometry else {
-                return
+              let faceGeometry = node.geometry as? ARSCNFaceGeometry else {
+            return
         }
         
         faceGeometry.update(from: faceAnchor.geometry)
         faceGeometry.firstMaterial?.diffuse.contents = nameFilter
         
-//        let text = SCNText(string: "", extrusionDepth: 2)
-//        let font = UIFont(name: "Avenir-Heavy", size: 18)
-//        text.font = font
-//        let material = SCNMaterial()
-//        material.diffuse.contents = UIColor.black
-//        text.materials = [material]
-//        text.firstMaterial?.isDoubleSided = true
-//        
-//        let textNode = SCNNode(geometry: faceGeometry)
-//        textNode.position = SCNVector3(-0.1, -0.01, -0.5)
-//        print(textNode.position)
-//        textNode.scale = SCNVector3(0.002, 0.002, 0.002)
-//        
-//        textNode.geometry = text
+        //        let text = SCNText(string: "", extrusionDepth: 2)
+        //        let font = UIFont(name: "Avenir-Heavy", size: 18)
+        //        text.font = font
+        //        let material = SCNMaterial()
+        //        material.diffuse.contents = UIColor.black
+        //        text.materials = [material]
+        //        text.firstMaterial?.isDoubleSided = true
+        //        
+        //        let textNode = SCNNode(geometry: faceGeometry)
+        //        textNode.position = SCNVector3(-0.1, -0.01, -0.5)
+        //        print(textNode.position)
+        //        textNode.scale = SCNVector3(0.002, 0.002, 0.002)
+        //        
+        //        textNode.geometry = text
         
         let defaultConfig = MLModelConfiguration()
         
@@ -89,16 +89,16 @@ extension ViewController: ARSCNViewDelegate {
         
         let coreMlRequest = VNCoreMLRequest(model: model) {[weak self] request, error in
             guard let results = request.results as? [VNClassificationObservation],
-                let topResult = results.first
-                else {
-                    fatalError("Unexpected results")
+                  let topResult = results.first
+            else {
+                fatalError("Unexpected results")
             }
-
+            
             DispatchQueue.main.async {[weak self] in
-//                print(topResult.identifier)
+                //                print(topResult.identifier)
                 if topResult.identifier != "Unknown" {
-//                    text.string = topResult.identifier
-//                    self!.sceneView.scene.rootNode.addChildNode(textNode)
+                    //                    text.string = topResult.identifier
+                    //                    self!.sceneView.scene.rootNode.addChildNode(textNode)
                     self!.sceneView.autoenablesDefaultLighting = true
                 }
             }
