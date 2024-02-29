@@ -76,6 +76,7 @@
 		EDBFE34F2B7FFF2700B0585F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EDBFE3572B7FFF2800B0585F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDBFE35F2B80033B00B0585F /* Face.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Face.mlmodel; sourceTree = "<group>"; };
+		EDFB93252B8F9FD8007D3B63 /* Skeenager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Skeenager.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +183,7 @@
 		EDBFE34A2B7FFF2700B0585F /* Skeenager */ = {
 			isa = PBXGroup;
 			children = (
+				EDFB93252B8F9FD8007D3B63 /* Skeenager.entitlements */,
 				65E1BFD02B8E0B5300E9A98B /* Info.plist */,
 				65EFE8902B86161C00F65786 /* Resources */,
 				65EFE88F2B86160400F65786 /* SwiftUI */,
@@ -438,9 +440,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Skeenager/Skeenager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z7AQTK42KX;
+				DEVELOPMENT_TEAM = LHM9LNP2C8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Skeenager/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
@@ -468,9 +471,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Skeenager/Skeenager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z7AQTK42KX;
+				DEVELOPMENT_TEAM = LHM9LNP2C8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Skeenager/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";

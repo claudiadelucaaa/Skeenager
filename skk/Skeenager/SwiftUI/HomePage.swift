@@ -35,25 +35,68 @@ struct PageProducts: View {
     
     var body: some View {
         NavigationStack {
-            Text("Select your products")
-                .font(Font.custom("Urbanist-SemiBold", size: 30, relativeTo: .title))
-                .frame(width: 350)
-                .multilineTextAlignment(.center)
-            Rectangle()
-                .frame(width: 350, height: 1)
-            SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
-            
-            NavigationLink {
-                ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
-            } label: {
-                Text("Start")
-                    .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
-                    .foregroundColor(Color.white)
-                    .padding(.all)
-                    .background(RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.black))
+            VStack {
+                Spacer()
+                Text("What products do you want to use today?")
+                    .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
+                    .frame(width: 350)
+                    .multilineTextAlignment(.leading)
+                Spacer()
+                SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+                Spacer()
+                NavigationLink {
+                    ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
+                } label: {
+                    Text("Start")
+                        .font(Font.custom("Urbanist-Regular", size: 25, relativeTo: .body))
+                        .foregroundColor(Color.white)
+                        .frame(width: 340, height: 63, alignment: .center)
+                        .background(RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.black))
+                }
+                Spacer()
             }
         }
+    }
+}
+
+struct OverflowLayout: Layout {
+    var spacing = CGFloat(10)
+    
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let containerWidth = proposal.replacingUnspecifiedDimensions().width
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        return layout(sizes: sizes, containerWidth: containerWidth).size
+    }
+    
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        let offsets = layout(sizes: sizes, containerWidth: bounds.width).offsets
+        for (offset, subview) in zip(offsets, subviews) {
+            subview.place(at: CGPoint(x: offset.x + bounds.minX, y: offset.y + bounds.minY), proposal: .unspecified)
+        }
+    }
+    
+    func layout(sizes: [CGSize], containerWidth: CGFloat) -> (offsets: [CGPoint], size: CGSize) {
+        var result: [CGPoint] = []
+        var currentPosition: CGPoint = .zero
+        var lineHeight: CGFloat = 0
+        var maxX: CGFloat = 0
+        for size in sizes {
+            if currentPosition.x + size.width > containerWidth {
+                currentPosition.x = 0
+                currentPosition.y += lineHeight + spacing
+                lineHeight = 0
+            }
+            
+            result.append(currentPosition)
+            currentPosition.x += size.width
+            maxX = max(maxX, currentPosition.x)
+            currentPosition.x += spacing
+            lineHeight = max(lineHeight, size.height)
+        }
+        
+        return (result, CGSize(width: maxX, height: currentPosition.y + lineHeight))
     }
 }
 
@@ -67,70 +110,43 @@ struct SelectYourProducts: View {
     @State private var selectedInfoIndex: Int? = nil
     
     var steps: Steps
-    let disabled: Color = .gray
+    let disabled: Color = .white
+    
+    let numberOfRows = 4
+    let buttonsPerRow = 2
+    let horizontalSpacing: CGFloat = -20
     
     var body: some View {
-        ForEach(steps.stepsList.indices, id: \.self){
-            index in
-            var step = steps.stepsList[index]
-            ZStack{
-                Button(action: {
-                    selectedStates[index].toggle()
-                    if selectedStates[index] {
-                        selectedInfoIndex = index
-                        info = step.info
-                        step.isSelected = true
-                        print(selectedStates[index])
-                        print(index)
-                    } else {
-                        selectedInfoIndex = nil
-                    }
-                }, label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.black)
-                            .fill(selectedStates[index] ? step.color : disabled)
-                            .opacity(0.2)
-                            .shadow(radius: 5, x: 0, y: 10)
-                            .frame(width: 360, height:60)
-                        
-                        HStack {
-                            Text(String(step.pos+1) + ".")
-                                .padding(.leading)
-                            Text(step.name)
-                            Spacer()
-                        }.font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
-                    }
-                    .frame(width: 250.0, height: 60.0)
-                    .foregroundColor(.black)
-                    .padding(.horizontal)
-                    .padding(.vertical, 6)
-                })
-                HStack {
-                    Spacer(minLength: 300)
+        OverflowLayout(spacing: 16) {
+            ForEach(steps.stepsList.indices, id: \.self){
+                index in
+                var step = steps.stepsList[index]
+                ZStack{
                     Button(action: {
-                        selectedInfo.toggle()
-                        selectedInfoIndex = index
-                        name = step.name
-                        info = step.info
-                        showInfo.toggle()
-                    }, label: {
-                        Image(systemName: "info.circle")
-                            .foregroundColor(.black)
-                            .font(.system(size: 20))
-                            .frame(width: 40, height: 30)
-                            .padding()
-                    })
-                    .sheet(isPresented: $showInfo, content: {
-                        VStack {
-                            Text(name)
-                                .frame(width: 350)
-                            Rectangle()
-                                .frame(width: 350, height: 2)
-                            Text(info)
-                                .frame(width: 300)
+                        selectedStates[index].toggle()
+                        if selectedStates[index] {
+                            selectedInfoIndex = index
+                            info = step.info
+                            step.isSelected = true
+                            print(selectedStates[index])
+                            print(index)
+                        } else {
+                            selectedInfoIndex = nil
                         }
-                        .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
+                    }, label: {
+                        ZStack {
+                            Text(step.name)
+                                .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
+                        }
+                        .padding()
+                        .foregroundColor(selectedStates[index] ? .white : .black)
+                        .frame(height: 40)
+                        .background(selectedStates[index] ? step.color : disabled)
+                        .cornerRadius(40)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 40)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
                     })
                 }
             }
@@ -139,6 +155,6 @@ struct SelectYourProducts: View {
 }
 
 
-//#Preview {
-//    HomePage()
-//}
+#Preview {
+    PageProducts()
+}
