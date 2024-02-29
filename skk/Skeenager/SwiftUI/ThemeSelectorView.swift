@@ -11,31 +11,27 @@ struct ThemeSelectorView: View {
     @Binding var currentView: CurrentView
     @Binding var currentIndex: Int
     var body: some View {
-        VStack(alignment: .center) {
+        ZStack {
+            Image("onBoard1")
             
-            HStack {
-                Image(systemName: "info")
-                Spacer()
-                Image(systemName: "info")
-            }.padding(.all)
-                .padding(.bottom)
-            
-            FilterScrollView(filters: Filter())
-            
-            Button(action: {
-                currentView = .products
-            }, label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 40)
-                        .foregroundStyle(Color.black)
-                        .frame(height: 60)
-                    Text(LocalizedStringKey("Start"))
-                        .font(Font.custom("Urbanist-Regular", size: 20))
-                        .foregroundStyle(Color.white)
-                }.padding(.all)
-            })
+            VStack {
+                
+                FilterScrollView(filters: Filter())
+                
+                Button(action: {
+                    currentView = .products
+                }, label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 40)
+                            .foregroundStyle(Color.black)
+                            .frame(height: 60)
+                        Text(LocalizedStringKey("Start"))
+                            .font(Font.custom("Urbanist-Regular", size: 20))
+                            .foregroundStyle(Color.white)
+                    }.padding(.all)
+                })
+            }.frame(width: 400, height: 900, alignment: .center)
         }
-        Spacer()
     }
 }
 
@@ -46,16 +42,18 @@ struct FilterScrollView: View {
     
     var body: some View {
         VStack {
-            Text(LocalizedStringKey("Choose your Theme"))
-                .font(Font.custom("Urbanist-SemiBold", size: 30))
-                .padding(.bottom)
-            
-            Text(LocalizedStringKey("Be guided by the theme that represents you the most!"))
-                .font(Font.custom("Urbanist-Regular", size: 13))
-                .multilineTextAlignment(.center)
-                .frame(width: 200)
-                .foregroundColor(.gray)
-                .padding(.bottom)
+            VStack {
+                Text(LocalizedStringKey("Choose your Theme"))
+                    .font(Font.custom("Urbanist-SemiBold", size: 30))
+                    .foregroundStyle(Color.black)
+
+                Text(LocalizedStringKey("Be guided by the theme that represents you the most!"))
+                    .font(Font.custom("Urbanist-Regular", size: 20))
+                    .foregroundStyle(Color.secondary)
+                               
+            }.frame(width: 300)
+             .multilineTextAlignment(.center)
+             .padding(.bottom)
             
             ZStack{
                 ForEach(filters.filterList.indices, id: \.self) { index in
