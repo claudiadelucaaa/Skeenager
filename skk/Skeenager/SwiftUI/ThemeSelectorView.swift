@@ -18,7 +18,7 @@ struct ThemeSelectorView: View {
                 Spacer()
                 Image(systemName: "info")
             }.padding(.all)
-                .padding(.bottom,90)
+                .padding(.bottom)
             
             FilterScrollView(filters: Filter())
             
@@ -36,8 +36,9 @@ struct ThemeSelectorView: View {
                 
                 
             })
-            Spacer()
         }
+        Spacer()
+
         
     }
 }
@@ -52,13 +53,20 @@ struct FilterScrollView: View {
         VStack {
             Text("Choose your Theme")
                 .font(Font.custom("Urbanist-SemiBold", size: 30))
+                .padding(.bottom)
+            Text("be guided by the theme that represents you the most!")
+                .font(Font.custom("Urbanist-Regular", size: 13))
+                .multilineTextAlignment(.center)
+                .frame(width: 200)
+                .foregroundColor(.gray)
+                .padding(.bottom)
             ZStack{
                 ForEach(filters.filterList.indices, id: \.self) { index in
                     let filter = filters.filterList[index]
                     VStack {
                         Image(filter.image)
                             .resizable()
-                            .frame(width: 300.0, height: 300.0)
+                            .frame(width: 347.0, height: 347.0)
                             .cornerRadius(10)
                             .scaledToFit()
                         
@@ -69,7 +77,7 @@ struct FilterScrollView: View {
                         
                     }.tag(index)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
-                        .scaleEffect(currentIndex == index ? 1.0 : 0.6)
+                        .scaleEffect(currentIndex == index ? 1.0 : 0.4)
                         .offset(x: CGFloat(index - currentIndex) * 240 + dragOffset, y: 0)
                     
                 }
