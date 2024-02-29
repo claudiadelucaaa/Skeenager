@@ -116,6 +116,17 @@ struct SelectYourProducts: View {
     let buttonsPerRow = 2
     let horizontalSpacing: CGFloat = -20
     
+    private func saveSelectedStates() {
+            UserDefaults.standard.set(selectedStates, forKey: "selectedStates")
+        }
+
+        // Retrieve the selectedStates from UserDefaults
+        private func loadSelectedStates() {
+            if let savedSelectedStates = UserDefaults.standard.array(forKey: "selectedStates") as? [Bool] {
+                selectedStates = savedSelectedStates
+            }
+        }
+    
     var body: some View {
         OverflowLayout(spacing: 16) {
             ForEach(steps.stepsList.indices, id: \.self){
@@ -133,6 +144,7 @@ struct SelectYourProducts: View {
                         } else {
                             selectedInfoIndex = nil
                         }
+                        saveSelectedStates() // Save the selectedStates whenever it changes
                     }, label: {
                         ZStack {
                             Text(LocalizedStringKey(step.name))
@@ -150,6 +162,8 @@ struct SelectYourProducts: View {
                     })
                 }
             }
+        }.onAppear {
+            loadSelectedStates() // Load the selectedStates when the view appears
         }
     }
 }

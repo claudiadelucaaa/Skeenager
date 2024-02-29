@@ -33,33 +33,30 @@ struct ThemeSelectorView: View {
                         .font(Font.custom("Urbanist-Regular", size: 20))
                         .foregroundStyle(Color.white)
                 }.padding(.all)
-                
-                
             })
         }
         Spacer()
-
-        
     }
 }
 
 struct FilterScrollView: View {
     @State var currentIndex: Int = 0
     @GestureState var dragOffset: CGFloat = 0
-
     var filters: Filter
-    //    DA ORA IN POI
+    
     var body: some View {
         VStack {
             Text(LocalizedStringKey("Choose your Theme"))
                 .font(Font.custom("Urbanist-SemiBold", size: 30))
                 .padding(.bottom)
+            
             Text(LocalizedStringKey("Be guided by the theme that represents you the most!"))
                 .font(Font.custom("Urbanist-Regular", size: 13))
                 .multilineTextAlignment(.center)
                 .frame(width: 200)
                 .foregroundColor(.gray)
                 .padding(.bottom)
+            
             ZStack{
                 ForEach(filters.filterList.indices, id: \.self) { index in
                     let filter = filters.filterList[index]
@@ -70,16 +67,12 @@ struct FilterScrollView: View {
                             .cornerRadius(10)
                             .scaledToFit()
                         
-                        // Use the image name as a tag
-                        
                         Text(LocalizedStringKey(filter.name))
                             .font(Font.custom("Urbanist-Regular", size: 20))
-                        
                     }.tag(index)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
                         .scaleEffect(currentIndex == index ? 1.0 : 0.4)
                         .offset(x: CGFloat(index - currentIndex) * 240 + dragOffset, y: 0)
-                    
                 }
             }.gesture(
                 DragGesture()

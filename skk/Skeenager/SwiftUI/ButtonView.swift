@@ -45,18 +45,18 @@ struct ButtonView: View {
                 
                 Spacer()
                 
-               
-                    VStack {
-                        Text(LocalizedStringKey("Step" + " " + String(posSelected+1) + ": " + stepSelected))
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .bold(true)
-                            .padding(.all)
-                            .background(RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.gray)
-                                .opacity(0.5))
-                        
-                if posSelected == selectedStates.lastIndex(where: { $0 }) {
+                
+                VStack {
+                    Text(LocalizedStringKey("Step" + " " + String(posSelected+1) + ": " + stepSelected))
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.black)
+                        .bold(true)
+                        .padding(.all)
+                        .background(RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.gray)
+                            .opacity(0.5))
+                    
+                    if posSelected == selectedStates.lastIndex(where: { $0 }) {
                         NavigationLink {
                             PageProducts()
                         } label: {
