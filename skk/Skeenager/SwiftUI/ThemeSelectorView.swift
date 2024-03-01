@@ -12,7 +12,7 @@ struct ThemeSelectorView: View {
     @Binding var currentIndex: Int
     var body: some View {
         ZStack {
-            Image("onBoard1")
+            Color.white
             
             VStack {
                 
@@ -69,8 +69,8 @@ struct FilterScrollView: View {
                             .font(Font.custom("Urbanist-Regular", size: 20))
                     }.tag(index)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
-                        .scaleEffect(currentIndex == index ? 1.0 : 0.4)
-                        .offset(x: CGFloat(index - currentIndex) * 240 + dragOffset, y: 0)
+                        .scaleEffect(currentIndex == index ? 1.0 : 0.7)
+                        .offset(x: CGFloat(index - currentIndex) * 295 + dragOffset, y: 0)
                 }
             }.gesture(
                 DragGesture()

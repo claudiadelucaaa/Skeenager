@@ -19,11 +19,9 @@ struct ContentView: App {
         WindowGroup {
             if hasSeenOnboardingView {
                 HomePage(currentIndex: currentIndex, changeView: $changeView)
-                //                OnboardingView()
             } else {
                 OnboardingView()
             }
-        }/*.environment(\.locale, .init(identifier: "it"))*/
-        .environment(\.locale, .current)
+        }.environment(\.locale, .current)
     }
 }

@@ -12,15 +12,9 @@ struct OnBoardingScreen: View {
     
     var body: some View {
         VStack {
-            //                    Image(systemName: item.systemImageName)
-            //                        .resizable()
-            //                        .aspectRatio(contentMode: .fit)
-            //                        .frame(maxWidth: 200, maxHeight: 200)
-            //                        .padding(.bottom)
-            
             VStack(alignment: .leading) {
                 Text(LocalizedStringKey(item.title))
-                    .font(Font.custom("Urbanist-Regular", size: 45, relativeTo: .title))
+                    .font(Font.custom("Urbanist-SemiBold", size: 45, relativeTo: .title))
                     .padding(.bottom)
                 
                 Text(LocalizedStringKey(item.subtitle))
@@ -39,7 +33,7 @@ struct OnBoardingScreen: View {
 }
 
 #Preview {
-    OnBoardingScreen(item: OnboardingItem(background: "onBoardBack1",
+    OnBoardingScreen(item: OnboardingItem(background: "onBoard1",
                                           systemImageName: "clock.badge.checkmark",
                                           title: "Titolo Riassuntivo",
                                           subtitle: "Descrizione abbastanza breve della feature."))

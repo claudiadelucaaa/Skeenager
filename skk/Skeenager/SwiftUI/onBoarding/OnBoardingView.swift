@@ -10,6 +10,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @State private var selectedView = 1
+    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     let maxNumberOfScreens = 3
     // We set this value to false (in case it doesn't already exist)
     @AppStorage(Constants.currentOnboardingVersion) private var hasSeenOnboardingView = false
@@ -31,11 +32,8 @@ struct OnboardingView: View {
                                                       subtitle: "Track of every step using your products and find new one!"))
                 .tag(2)
                 
-                // Screen 3
-                OnBoardingScreen(item: OnboardingItem(background: "onBoard0",
-                                                      systemImageName: "dollarsign.circle",
-                                                      title: "Make money",
-                                                      subtitle: "Track of every step using your products and find new one!"))
+//                // Screen 3
+                SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
                 .tag(3)
             }
             .ignoresSafeArea()
