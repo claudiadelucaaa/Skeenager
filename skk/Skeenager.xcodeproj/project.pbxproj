@@ -452,7 +452,7 @@
 				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Skeenager/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result, without saving biometric data, just for apply filters on the face";
 				INFOPLIST_KEY_NSContactsUsageDescription = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
@@ -483,7 +483,7 @@
 				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Skeenager/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result, without saving biometric data, just for apply filters on the face";
 				INFOPLIST_KEY_NSContactsUsageDescription = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;

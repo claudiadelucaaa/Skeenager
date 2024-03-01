@@ -14,6 +14,9 @@ struct ButtonView: View {
     @State var stepSelected: String
     @State var posSelected: Int
     
+    @Binding var currentView: CurrentView
+    @Binding var currentIndex: Int
+    
     var body: some View {
         ZStack{
             BasicUIViewControllerRepresentable(filter: $filterSelected)
@@ -57,9 +60,10 @@ struct ButtonView: View {
                             .opacity(0.5))
                     
                     if posSelected == selectedStates.lastIndex(where: { $0 }) {
-                        NavigationLink {
-                            PageProducts()
-                        } label: {
+                        NavigationLink(destination: {
+                            ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex)
+                                .navigationBarBackButtonHidden()
+                        }, label: {
                             Text(LocalizedStringKey("Finish"))
                                 .font(.system(size: 20))
                                 .foregroundColor(Color.black)
@@ -67,7 +71,7 @@ struct ButtonView: View {
                                 .background(RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.green)
                                     .opacity(0.5))
-                        }
+                        })
                     }
                 }
             }

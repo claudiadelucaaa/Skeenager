@@ -23,15 +23,18 @@ struct HomePage: View {
         case .theme:
             ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex)
         case .products:
-            PageProducts()
+            PageProducts(currentIndex: currentIndex)
         case .ar:
-            ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
+            ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
         }
     }
 }
 
 struct PageProducts: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    
+    @State var currentView: CurrentView = .logo
+    @State var currentIndex: Int
     
     var body: some View {
         NavigationStack {
@@ -45,7 +48,7 @@ struct PageProducts: View {
                 SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
                 Spacer()
                 NavigationLink {
-                    ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0)
+                    ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
                 } label: {
                     Text(LocalizedStringKey("Start"))
                         .font(Font.custom("Urbanist-Regular", size: 25, relativeTo: .body))
@@ -168,7 +171,7 @@ struct SelectYourProducts: View {
     }
 }
 
-
-#Preview {
-    PageProducts()
-}
+//
+//#Preview {
+//    PageProducts()
+//}
