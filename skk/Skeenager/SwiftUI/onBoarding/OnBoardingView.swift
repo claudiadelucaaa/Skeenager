@@ -12,6 +12,7 @@ struct OnboardingView: View {
     @State private var selectedView = 1
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     let maxNumberOfScreens = 3
+    @State var currentIndex = 0
     // We set this value to false (in case it doesn't already exist)
     @AppStorage(Constants.currentOnboardingVersion) private var hasSeenOnboardingView = false
     
@@ -33,7 +34,7 @@ struct OnboardingView: View {
                 .tag(2)
                 
 //                // Screen 3
-                SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+                PageProducts(currentIndex: currentIndex)
                 .tag(3)
             }
             .ignoresSafeArea()
