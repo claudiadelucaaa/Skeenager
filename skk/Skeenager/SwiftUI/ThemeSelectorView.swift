@@ -11,26 +11,31 @@ struct ThemeSelectorView: View {
     @Binding var currentView: CurrentView
     @Binding var currentIndex: Int
     var body: some View {
-        ZStack {
-            Color.white
-            
-            VStack {
+        NavigationStack {
+            ZStack {
+                Color.white
                 
-                FilterScrollView(filters: Filter())
-                
-                Button(action: {
-                    currentView = .products
-                }, label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 40)
-                            .foregroundStyle(Color.black)
-                            .frame(height: 60)
-                        Text(LocalizedStringKey("Start"))
-                            .font(Font.custom("Urbanist-Regular", size: 20))
-                            .foregroundStyle(Color.white)
-                    }.padding(.all)
-                })
-            }.frame(width: 400, height: 900, alignment: .center)
+                VStack {
+                    
+                    FilterScrollView(filters: Filter())
+                    
+                    NavigationLink(destination: {
+                        PageProducts(currentIndex: currentIndex)
+                            .navigationBarBackButtonHidden()
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 40)
+                                .foregroundStyle(Color.black)
+                                .frame(height: 60)
+                            Text(LocalizedStringKey("Start"))
+                                .font(Font.custom("Urbanist-Regular", size: 20))
+                                .foregroundStyle(Color.white)
+                        }.padding(.all)
+                        
+                        
+                    })
+                }.frame(width: 400, height: 900, alignment: .center)
+            }
         }
     }
 }
