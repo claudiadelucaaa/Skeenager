@@ -13,6 +13,7 @@ struct HomePage: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
     @State var currentView: CurrentView = .logo
     @State var currentIndex = 0
+    @Binding var streakCount: Int
     
     @Binding var changeView: Bool
     
@@ -21,7 +22,7 @@ struct HomePage: View {
         case .logo:
             AppLogo(currentView: $currentView)
         case .theme:
-            ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex)
+            ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex, streakCount: $streakCount)
         case .products:
             PageProducts(currentIndex: currentIndex)
         case .ar:

@@ -14,9 +14,10 @@ struct AppLogo: View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack{
-                Text(LocalizedStringKey("Skeenager"))
-                    .font(Font.custom("Urbanist-Regular", size: 55, relativeTo: .title))
-                    .frame(height: 80)
+                Image("Logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 280)
                 
                 Rectangle()
                     .frame(width: 300, height: 2)
