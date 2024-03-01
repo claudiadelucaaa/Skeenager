@@ -34,7 +34,7 @@ struct OnboardingView: View {
                 .tag(2)
                 
 //                // Screen 3
-                PageProducts(currentIndex: currentIndex)
+                OnboardingProducts()
                 .tag(3)
             }
             .ignoresSafeArea()

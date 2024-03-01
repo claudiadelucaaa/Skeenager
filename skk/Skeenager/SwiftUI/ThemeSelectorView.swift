@@ -17,9 +17,9 @@ struct ThemeSelectorView: View {
                 Color.white
                 
                 VStack {
-                    
+                    Spacer(minLength: 100)
                     FilterScrollView(streakCounter: $streakCount, filters: Filter())
-                    
+                    Spacer()
                     NavigationLink(destination: {
                         PageProducts(currentIndex: currentIndex)
                             .navigationBarBackButtonHidden()
@@ -35,6 +35,7 @@ struct ThemeSelectorView: View {
                         
                         
                     })
+                    Spacer(minLength: 50)
                 }.frame(width: 400, height: 900, alignment: .center)
             }
         }
@@ -68,7 +69,7 @@ struct FilterScrollView: View {
             }.frame(width: 80,height: 41)
                 Spacer()
             }.padding(.horizontal)
-            
+            Spacer(minLength: 50)
             VStack {
                 Text(LocalizedStringKey("Choose your Theme"))
                     .font(Font.custom("Urbanist-SemiBold", size: 30))
@@ -81,7 +82,6 @@ struct FilterScrollView: View {
             }.frame(width: 300)
                 .multilineTextAlignment(.center)
                 .padding(.bottom)
-            
             ZStack{
                 ForEach(filters.filterList.indices, id: \.self) { index in
                     let filter = filters.filterList[index]
@@ -91,9 +91,10 @@ struct FilterScrollView: View {
                             .frame(width: 347.0, height: 347.0)
                             .cornerRadius(10)
                             .scaledToFit()
-                        
+                        Spacer(minLength: 20)
                         Text(LocalizedStringKey(filter.name))
                             .font(Font.custom("Urbanist-Regular", size: 20))
+                            .padding(.bottom)
                     }.tag(index)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
                         .scaleEffect(currentIndex == index ? 1.0 : 0.7)
@@ -115,6 +116,7 @@ struct FilterScrollView: View {
                         }
                     })
             )
+            Spacer(minLength: 50)
         }
     }
 }

@@ -39,7 +39,7 @@ struct PageProducts: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(alignment: .leading) {
                 Spacer()
                 Text(LocalizedStringKey("What products do you want to use today?"))
                     .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
@@ -51,18 +51,44 @@ struct PageProducts: View {
                 NavigationLink {
                     ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
                 } label: {
-                    Text(LocalizedStringKey("Start"))
-                        .font(Font.custom("Urbanist-Regular", size: 25, relativeTo: .body))
-                        .foregroundColor(Color.white)
-                        .frame(width: 340, height: 63, alignment: .center)
-                        .background(RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.black))
+//                    Text(LocalizedStringKey("Start"))
+//                        .font(Font.custom("Urbanist-Regular", size: 25, relativeTo: .body))
+//                        .foregroundColor(Color.white)
+//                        .frame(width: 340, height: 63, alignment: .center)
+//                        .background(RoundedRectangle(cornerRadius: 40)
+//                            .fill(Color.black))
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 40)
+                            .foregroundStyle(Color.black)
+                            .frame(height: 60)
+                        Text(LocalizedStringKey("Start"))
+                            .font(Font.custom("Urbanist-Regular", size: 20))
+                            .foregroundStyle(Color.white)
+                    }
                 }
                 Spacer()
-            }
+            }.padding(.all)
         }
     }
 }
+
+struct OnboardingProducts: View {
+    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Spacer()
+            Text(LocalizedStringKey("What products do you already have?"))
+                .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
+//                .frame(width: 350)
+                .multilineTextAlignment(.leading)
+            Spacer(minLength: 150)
+            SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+            Spacer(minLength: 250)
+        }.padding(.all)
+    }
+}
+
 
 struct OverflowLayout: Layout {
     var spacing = CGFloat(10)
@@ -172,7 +198,7 @@ struct SelectYourProducts: View {
     }
 }
 
-//
+
 //#Preview {
-//    PageProducts()
+//    PageProducts(currentIndex: $currentIndex)
 //}
