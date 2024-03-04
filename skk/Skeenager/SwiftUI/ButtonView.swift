@@ -76,7 +76,7 @@ struct ButtonView: View {
                 
                 
                 VStack {
-                    Text(LocalizedStringKey("Step" + " " + String(posSelected+1) + ": " + stepSelected))
+                    Text(LocalizedStringKey(stepSelected))
                         .font(.system(size: 20))
                         .foregroundColor(Color.black)
                         .bold(true)
@@ -102,6 +102,13 @@ struct ButtonView: View {
                                 .navigationBarBackButtonHidden()
                         }
                     }
+                }
+            }.onAppear {
+                // Find the index of the first selected step
+                if let index = selectedStates.firstIndex(where: { $0 }) {
+                    filterSelected = steps.rainbowList[index].filte
+                    stepSelected = steps.rainbowList[index].name
+                    posSelected = steps.rainbowList[index].pos
                 }
             }
         }

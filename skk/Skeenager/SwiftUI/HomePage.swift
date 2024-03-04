@@ -72,16 +72,23 @@ struct OnboardingProducts: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-            Text(LocalizedStringKey("What products do you already have?"))
-                .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
-//                .frame(width: 350)
-                .multilineTextAlignment(.leading)
-            Spacer(minLength: 150)
-            SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
-            Spacer(minLength: 250)
-        }.padding(.all)
+        ZStack{
+            Color.white
+            VStack(alignment: .leading) {
+                
+                Spacer()
+                
+                Text(LocalizedStringKey("What products do you already have?"))
+                    .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
+                    .multilineTextAlignment(.leading)
+                
+                Spacer(minLength: 150)
+                
+                SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+    
+                Spacer(minLength: 250)
+            }.padding(.all)
+        }
     }
 }
 
