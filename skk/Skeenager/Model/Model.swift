@@ -156,8 +156,6 @@ class Steps {
 enum CurrentView {
     case logo
     case theme
-    case products
-    case ar
 }
 
 enum FilterSelection {

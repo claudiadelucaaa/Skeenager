@@ -10,8 +10,6 @@ import SwiftUI
 
 @main
 struct ContentView: App {
-    @State private var changeView = false // Add a State variable for changeView
-    @State private var currentIndex = 0
     @State private var selectedStates = [false]
     @State var streakCount = 0
     @AppStorage(Constants.currentOnboardingVersion) private var hasSeenOnboardingView = false
@@ -19,7 +17,7 @@ struct ContentView: App {
     var body: some Scene {
         WindowGroup {
             if hasSeenOnboardingView {
-                HomePage(currentIndex: currentIndex, streakCount: $streakCount, changeView: $changeView)
+                HomePage(streakCount: $streakCount)
             } else {
                 OnboardingView()
             }

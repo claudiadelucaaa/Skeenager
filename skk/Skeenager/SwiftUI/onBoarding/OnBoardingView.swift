@@ -18,6 +18,7 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
+            
             TabView(selection: $selectedView) {
                 // Screen 1
                 OnBoardingScreen(item: OnboardingItem(background: "onBoard0",
@@ -39,21 +40,34 @@ struct OnboardingView: View {
             }
             .ignoresSafeArea()
             .tabViewStyle(.page)
-            
-            Button {
-                if selectedView == maxNumberOfScreens {
-                    hasSeenOnboardingView = true
-                } else {
-                    selectedView += 1
+            VStack{
+                Spacer()
+                
+                Button {
+                    if selectedView == maxNumberOfScreens {
+                        hasSeenOnboardingView = true
+                    } else {
+                        selectedView += 1
+                    }
+                } label: {
+                    if selectedView == maxNumberOfScreens {
+                        
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 40)
+                                .foregroundStyle(Color.black)
+                                .frame(height: 60)
+                            
+                            Text(LocalizedStringKey("Start"))
+                                .font(Font.custom("Urbanist-Regular", size: 20))
+                                .foregroundStyle(Color.white)
+                        }.padding(.all)
+                    }
                 }
-            } label: {
-                Text(selectedView == maxNumberOfScreens ? "Done" : "Next")
             }
-            .buttonStyle(.bordered)
-            .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
-            .foregroundStyle(Color.black)
-            .padding(.top, 660)
         }
     }
 }
 
+#Preview {
+    OnboardingView(currentIndex: 1)
+}

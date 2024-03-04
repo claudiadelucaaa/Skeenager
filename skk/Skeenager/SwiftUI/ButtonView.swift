@@ -8,102 +8,102 @@
 import SwiftUI
 
 struct ButtonView: View {
-    @Binding var selectedStates: [Bool]
-    //variabile passata dell'indice del tema 
-    @State var selectedIndex: Int?
+    //for ForEach
     var steps: Steps
-    var filters: Filter
-    @State var filterSelected: String
-    @State var stepSelected: String
-    @State var posSelected: Int
+    @Binding var selectedStates: [Bool]
+    
+    //temp var for store -filter; -nameStep; -pos
+    @State var filterSelected = ""
+    @State var stepSelected = ""
+    @State var posSelected = 0
+    
+    //for navigation
     @State private var isPushed = false
     
     @Binding var currentView: CurrentView
-    @Binding var currentIndex: Int
+    @State var currentIndex: Int
     
     //Streak Counter
     @State private var lastActualAccessDate: Date?
     @State private var lastRecordedAccessDate: Date?
     @State private var streakCount: Int = UserDefaults.standard.integer(forKey: "streakCount")
-    @State private var access: Bool = UserDefaults.standard.bool(forKey: "access")
     
-    // Add initializers to initialize all properties
-    init(selectedStates: Binding<[Bool]>, steps: Steps, filters: Filter, filterSelected: String, stepSelected: String, posSelected: Int, currentView: Binding<CurrentView>, currentIndex: Binding<Int>) {
+    //for transition
+    @GestureState var dragOffset: CGFloat = 0
+    
+    //Init
+    init(selectedStates: Binding<[Bool]>, currentView: Binding<CurrentView>, currentIndex: State<Int>, steps: Steps) {
         self._selectedStates = selectedStates
-        self.steps = steps
-        self.filters = filters
-        self._filterSelected = State(initialValue: filterSelected)
-        self._stepSelected = State(initialValue: stepSelected)
-        self._posSelected = State(initialValue: posSelected)
         self._currentView = currentView
+        self.steps = steps
         self._currentIndex = currentIndex
-        
-        // Load last access date from UserDefaults when the view is initialized
-        self._lastActualAccessDate = State(wrappedValue: UserDefaults.standard.object(forKey: "lastActualAccessDate") as? Date)
-        self._lastRecordedAccessDate = State(wrappedValue: UserDefaults.standard.object(forKey: "lastRecordedAccessDate") as? Date)
     }
     
     var body: some View {
         ZStack{
             BasicUIViewControllerRepresentable(filter: $filterSelected)
                 .ignoresSafeArea()
-            VStack{
-                HStack{
-                    ForEach(steps.rainbowList.indices, id: \.self) { ind in
-                        let step = steps.rainbowList[ind]
+            ZStack {
+                ForEach(steps.rainbowList.indices, id: \.self) { ind in
+                    let step = steps.rainbowList[ind]
+                    VStack {
                         if selectedStates[ind] == true {
+                            let trueCount = selectedStates.filter { $0 }.count
                             
-                            Button(action: {
-                                filterSelected = step.filte
-                                stepSelected = step.name
-                                posSelected = step.pos
-                            }, label: {
-                                Text(String(step.pos+1))
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Color.black)
-                                    .bold(true)
-                                    .padding(.all)
-                                    .background(Circle()
+                            HStack{
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 40)
                                         .fill(Color.gray)
                                         .opacity(0.5)
-                                        .frame(width: 40.0, height: 40.0))
-                            })
+                                    
+                                    VStack{
+                                        Text(LocalizedStringKey(step.name))
+                                        Text(String(step.pos+1) + "|" + String(trueCount))
+                                    }.padding(.all)
+                                }
+                                
+                                if (posSelected + 1) == selectedStates.lastIndex(where: { $0 }) {
+                                    Button {
+                                        isPushed.toggle()
+                                        handleLogin()
+                                    } label: {
+                                        Image(systemName: "checkmark")
+                                            .padding(.all)
+                                            .background(Circle()
+                                                .fill(Color.gray)
+                                                .opacity(0.5)
+                                                .frame(width: 40.0, height: 40.0))
+                                    }.navigationDestination(isPresented: $isPushed) {
+                                        ThemeSelectorView(streakCount: $streakCount)
+                                            .navigationBarBackButtonHidden()
+                                    }
+                                } else{
+                                    Button {
+                                        currentIndex += 1
+                                        filterSelected = step.filte
+                                        posSelected = step.pos
+                                    } label: {
+                                        Image(systemName: "arrow.forward")
+                                            .padding(.all)
+                                            .background(Circle()
+                                                .fill(Color.gray)
+                                                .opacity(0.5)
+                                                .frame(width: 40.0, height: 40.0))
+                                    }
+                                }
+                                
+                                
+                            }.font(Font.custom("Urbanist-SemiBold", size: 20))
+                                .frame(width: 350.0, height: 80)
+                                .foregroundStyle(Color.black)
                         }
-                    }
+                    }.tag(ind)
+                        .opacity(currentIndex == ind ? 2.0 : 0.5)
+                    //                        .scaleEffect(currentIndex == ind ? 1.0 : 0.7)
+                        .offset(x: CGFloat(ind - currentIndex) * 350 + dragOffset, y: 0)
                 }
-                
-                Spacer()
-                
-                
-                VStack {
-                    Text(LocalizedStringKey(stepSelected))
-                        .font(.system(size: 20))
-                        .foregroundColor(Color.black)
-                        .bold(true)
-                        .padding(.all)
-                        .background(RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.gray)
-                            .opacity(0.5))
-                    
-                    if posSelected == selectedStates.lastIndex(where: { $0 }) {
-                        Button(action: {
-                            isPushed.toggle()
-                            handleLogin()
-                        }, label: {
-                            Text(LocalizedStringKey("Finish"))
-                                .font(.system(size: 20))
-                                .foregroundColor(Color.black)
-                                .padding(.all)
-                                .background(RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.green)
-                                    .opacity(0.5))
-                        }).navigationDestination(isPresented: $isPushed) {
-                            ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex, streakCount: $streakCount)
-                                .navigationBarBackButtonHidden()
-                        }
-                    }
-                }
-            }.onAppear {
+            }
+            .onAppear {
                 // Find the index of the first selected step
                 if let index = selectedStates.firstIndex(where: { $0 }) {
                     filterSelected = steps.rainbowList[index].filte
@@ -140,7 +140,6 @@ struct ButtonView: View {
         UserDefaults.standard.set(lastActualAccessDate, forKey: "lastActualAccessDate") // Save last actual access date
         UserDefaults.standard.set(lastRecordedAccessDate, forKey: "lastRecordedAccessDate") // Save last recorded access date
     }
-    
 }
 
 

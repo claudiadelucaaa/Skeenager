@@ -10,9 +10,11 @@ import SwiftUI
 struct AppLogo: View {
     @Binding var currentView: CurrentView
     @State var scale = 0.5
+    
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
+            
             VStack{
                 Image("Logo")
                     .resizable()

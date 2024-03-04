@@ -11,7 +11,6 @@
 		6543F8F32B8E5692002D4C0B /* AppLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543F8F22B8E5692002D4C0B /* AppLogo.swift */; };
 		6563C51E2B84C0680001C761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563C51D2B84C0680001C761 /* ContentView.swift */; };
 		65A0999B2B90C5C400A019CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65A0999D2B90C5C400A019CA /* Localizable.strings */; };
-		65AB13AC2B88991D000282EF /* StreakCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB13AB2B88991D000282EF /* StreakCountView.swift */; };
 		65E1BFA72B8DE02700E9A98B /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E1BFA62B8DE02700E9A98B /* OnBoardingScreen.swift */; };
 		65E1BFA92B8DE31A00E9A98B /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E1BFA82B8DE31A00E9A98B /* OnBoardingView.swift */; };
 		65E1BFBE2B8E0B2100E9A98B /* Urbanist-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65E1BFAC2B8E0B2100E9A98B /* Urbanist-Bold.ttf */; };
@@ -48,7 +47,6 @@
 		65A0999C2B90C5C400A019CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65A0999E2B90C5CB00A019CA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65A0999F2B90C5CC00A019CA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		65AB13AB2B88991D000282EF /* StreakCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCountView.swift; sourceTree = "<group>"; };
 		65E1BFA62B8DE02700E9A98B /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		65E1BFA82B8DE31A00E9A98B /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		65E1BFAC2B8E0B2100E9A98B /* Urbanist-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Bold.ttf"; sourceTree = "<group>"; };
@@ -145,13 +143,12 @@
 		65EFE88F2B86160400F65786 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				65E1BFAA2B8DE55C00E9A98B /* onBoarding */,
 				6563C51D2B84C0680001C761 /* ContentView.swift */,
+				65E1BFAA2B8DE55C00E9A98B /* onBoarding */,
 				6543F8F22B8E5692002D4C0B /* AppLogo.swift */,
 				ED5BD9862B86AA7400151531 /* HomePage.swift */,
 				651A296B2B84A75A004897DE /* ButtonView.swift */,
 				65EFE89E2B87856400F65786 /* ThemeSelectorView.swift */,
-				65AB13AB2B88991D000282EF /* StreakCountView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				ED5BD9872B86AA7400151531 /* HomePage.swift in Sources */,
 				65E1BFA92B8DE31A00E9A98B /* OnBoardingView.swift in Sources */,
 				65E1BFA72B8DE02700E9A98B /* OnBoardingScreen.swift in Sources */,
-				65AB13AC2B88991D000282EF /* StreakCountView.swift in Sources */,
 				651A296C2B84A75A004897DE /* ButtonView.swift in Sources */,
 				EDBFE3502B7FFF2700B0585F /* ViewController.swift in Sources */,
 				65EFE88C2B85F2D300F65786 /* Model.swift in Sources */,

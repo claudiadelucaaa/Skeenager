@@ -8,27 +8,16 @@
 import SwiftUI
 
 struct HomePage: View {
-    @State private var isButtonClicked = false
-    @State var scale = 0.5
-    @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
     @State var currentView: CurrentView = .logo
-    @State var currentIndex = 0
-    @State var selectedIndex = 0
     
     @Binding var streakCount: Int
-    
-    @Binding var changeView: Bool
-    
+        
     var body: some View {
         switch currentView {
         case .logo:
             AppLogo(currentView: $currentView)
         case .theme:
-            ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex, streakCount: $streakCount)
-        case .products:
-            PageProducts(currentIndex: currentIndex, selectedIndex: selectedIndex)
-        case .ar:
-            ButtonView(selectedStates: $selectedStates, steps: Steps(), filters: Filter(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
+            ThemeSelectorView(streakCount: $streakCount)
         }
     }
 }
@@ -37,57 +26,80 @@ struct PageProducts: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
     @State var currentView: CurrentView = .logo
     @State var currentIndex: Int
-    @State var selectedIndex: Int
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Spacer(minLength: 250)
-                Text(LocalizedStringKey("What products do you want to use today?"))
-                    .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
-                    .frame(width: 350, height: 100)
-                    .multilineTextAlignment(.leading)
-                Spacer(minLength: 150)
-                SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
-                Spacer(minLength: 150)
-                NavigationLink {
-                    ButtonView(selectedStates: $selectedStates, steps: Steps(), filters: Filter(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 40)
-                            .foregroundStyle(Color.black)
-                            .frame(height: 60)
-                        Text(LocalizedStringKey("Start"))
-                            .font(Font.custom("Urbanist-Regular", size: 20))
-                            .foregroundStyle(Color.white)
+            ZStack {
+                Color.white.ignoresSafeArea()
+                
+                VStack{
+                    Spacer()
+                    
+                VStack {
+                    Text(LocalizedStringKey("What products do you want to use today?"))
+                        .font(Font.custom("Urbanist-SemiBold", size: 30))
+                        .foregroundStyle(Color.black)
+                    
+                    Text(LocalizedStringKey("Select your products"))
+                        .font(Font.custom("Urbanist-Regular", size: 20))
+                        .foregroundStyle(Color.gray)
+                }.frame(width: 300)
+                .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                    
+                    SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+                    
+                    Spacer()
+                    
+                    NavigationLink {
+                        ButtonView(selectedStates: $selectedStates, currentView: $currentView, currentIndex: _currentIndex, steps: Steps())
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 40)
+                                .foregroundStyle(Color.black)
+                                .frame(height: 60)
+                            
+                            Text(LocalizedStringKey("Start"))
+                                .font(Font.custom("Urbanist-Regular", size: 20))
+                                .foregroundStyle(Color.white)
+                        }.padding(.all)
                     }
                 }
-                Spacer(minLength: 150)
-            }.padding(.all)
+            }
         }
     }
 }
 
 struct OnboardingProducts: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
-
+    
     var body: some View {
         ZStack{
-            Color.white
-            VStack(alignment: .leading) {
+            Color.white.ignoresSafeArea()
+            
+            VStack{
+                Spacer()
+                
+            VStack {
+                Text(LocalizedStringKey("What products do you already have?"))
+                    .font(Font.custom("Urbanist-SemiBold", size: 30))
+                    .foregroundStyle(Color.black)
+                
+                Text(LocalizedStringKey("Select your products"))
+                    .font(Font.custom("Urbanist-Regular", size: 20))
+                    .foregroundStyle(Color.gray)
+            }.frame(width: 300)
+            .multilineTextAlignment(.center)
                 
                 Spacer()
                 
-                Text(LocalizedStringKey("What products do you already have?"))
-                    .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
-                    .multilineTextAlignment(.leading)
-                
-                Spacer(minLength: 150)
-                
                 SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
-    
-                Spacer(minLength: 250)
-            }.padding(.all)
+                
+                Spacer()
+                Spacer()
+            }
         }
     }
 }
@@ -136,18 +148,8 @@ struct OverflowLayout: Layout {
 struct SelectYourProducts: View {
     @Binding var selectedStates: [Bool]
     
-    @State var selectedInfo: Bool = false
-    @State var showInfo = false
-    @State var info: String = ""
-    @State var name: String = ""
-    @State private var selectedInfoIndex: Int? = nil
-    
     var steps: Steps
     let disabled: Color = .white
-    
-    let numberOfRows = 4
-    let buttonsPerRow = 2
-    let horizontalSpacing: CGFloat = -20
     
     private func saveSelectedStates() {
         UserDefaults.standard.set(selectedStates, forKey: "selectedStates")
@@ -162,47 +164,43 @@ struct SelectYourProducts: View {
     
     var body: some View {
         OverflowLayout(spacing: 16) {
+            
             ForEach(steps.rainbowList.indices, id: \.self){
                 index in
                 var step = steps.rainbowList[index]
                 ZStack{
                     Button(action: {
                         selectedStates[index].toggle()
+                        
                         if selectedStates[index] {
-//                            selectedInfoIndex = index
-//                            info = step.info
                             step.isSelected = true
-                            print(selectedStates[index])
-                            print(index)
                         }
-//                            else {
-//                            selectedInfoIndex = nil
-//                        }
+                        
                         saveSelectedStates() // Save the selectedStates whenever it changes
+
                     }, label: {
-                        ZStack {
-                            Text(LocalizedStringKey(step.name))
-                                .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
-                        }
-                        .padding()
-                        .foregroundColor(selectedStates[index] ? .white : .black)
-                        .frame(height: 40)
-                        .background(selectedStates[index] ? step.color : disabled)
-                        .cornerRadius(40)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
+                        Text(LocalizedStringKey(step.name))
+                            .font(Font.custom("Urbanist-Regular", size: 20, relativeTo: .body))
+                            .foregroundStyle(selectedStates[index] ? .white : .black)
+                            .padding()
+                            .foregroundColor(selectedStates[index] ? .white : .black)
+                            .frame(height: 40)
+                            .background(selectedStates[index] ? step.color : disabled)
+                            .cornerRadius(40)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 40)
+                                    .stroke(Color.black, lineWidth: 1)
+                            )
                     })
                 }
             }
         }.onAppear {
             loadSelectedStates() // Load the selectedStates when the view appears
-        }
+        }.padding(.vertical)
     }
 }
 
 
-//#Preview {
-//    PageProducts(currentIndex: .constant(0))
-//}
+#Preview {
+    PageProducts(currentIndex: 0)
+}
