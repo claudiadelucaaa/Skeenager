@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ButtonView: View {
     @Binding var selectedStates: [Bool]
+    //variabile passata dell'indice del tema 
+    @State var selectedIndex: Int?
     var steps: Steps
+    var filters: Filter
     @State var filterSelected: String
     @State var stepSelected: String
     @State var posSelected: Int
@@ -25,9 +28,10 @@ struct ButtonView: View {
     @State private var access: Bool = UserDefaults.standard.bool(forKey: "access")
     
     // Add initializers to initialize all properties
-    init(selectedStates: Binding<[Bool]>, steps: Steps, filterSelected: String, stepSelected: String, posSelected: Int, currentView: Binding<CurrentView>, currentIndex: Binding<Int>) {
+    init(selectedStates: Binding<[Bool]>, steps: Steps, filters: Filter, filterSelected: String, stepSelected: String, posSelected: Int, currentView: Binding<CurrentView>, currentIndex: Binding<Int>) {
         self._selectedStates = selectedStates
         self.steps = steps
+        self.filters = filters
         self._filterSelected = State(initialValue: filterSelected)
         self._stepSelected = State(initialValue: stepSelected)
         self._posSelected = State(initialValue: posSelected)
@@ -145,3 +149,5 @@ struct BasicUIViewControllerRepresentable: UIViewControllerRepresentable {
         print("funzione chiamata")
     }
 }
+
+

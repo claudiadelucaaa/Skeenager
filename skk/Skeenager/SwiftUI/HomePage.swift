@@ -26,37 +26,30 @@ struct HomePage: View {
         case .products:
             PageProducts(currentIndex: currentIndex)
         case .ar:
-            ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
+            ButtonView(selectedStates: $selectedStates, steps: Steps(), filters: Filter(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
         }
     }
 }
 
 struct PageProducts: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
-    
     @State var currentView: CurrentView = .logo
     @State var currentIndex: Int
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Spacer()
+                Spacer(minLength: 250)
                 Text(LocalizedStringKey("What products do you want to use today?"))
                     .font(Font.custom("Urbanist-SemiBold", size: 35, relativeTo: .title))
-                    .frame(width: 350)
+                    .frame(width: 350, height: 100)
                     .multilineTextAlignment(.leading)
-                Spacer()
+                Spacer(minLength: 150)
                 SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
-                Spacer()
+                Spacer(minLength: 150)
                 NavigationLink {
-                    ButtonView(selectedStates: $selectedStates, steps: Steps(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
+                    ButtonView(selectedStates: $selectedStates, steps: Steps(), filters: Filter(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
                 } label: {
-//                    Text(LocalizedStringKey("Start"))
-//                        .font(Font.custom("Urbanist-Regular", size: 25, relativeTo: .body))
-//                        .foregroundColor(Color.white)
-//                        .frame(width: 340, height: 63, alignment: .center)
-//                        .background(RoundedRectangle(cornerRadius: 40)
-//                            .fill(Color.black))
                     ZStack{
                         RoundedRectangle(cornerRadius: 40)
                             .foregroundStyle(Color.black)
@@ -66,7 +59,7 @@ struct PageProducts: View {
                             .foregroundStyle(Color.white)
                     }
                 }
-                Spacer()
+                Spacer(minLength: 150)
             }.padding(.all)
         }
     }
@@ -200,5 +193,5 @@ struct SelectYourProducts: View {
 
 
 //#Preview {
-//    PageProducts(currentIndex: $currentIndex)
+//    PageProducts(currentIndex: .constant(0))
 //}
