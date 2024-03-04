@@ -10,9 +10,11 @@ import SwiftUI
 struct HomePage: View {
     @State private var isButtonClicked = false
     @State var scale = 0.5
-    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
     @State var currentView: CurrentView = .logo
     @State var currentIndex = 0
+    @State var selectedIndex = 0
+    
     @Binding var streakCount: Int
     
     @Binding var changeView: Bool
@@ -24,7 +26,7 @@ struct HomePage: View {
         case .theme:
             ThemeSelectorView(currentView: $currentView, currentIndex: $currentIndex, streakCount: $streakCount)
         case .products:
-            PageProducts(currentIndex: currentIndex)
+            PageProducts(currentIndex: currentIndex, selectedIndex: selectedIndex)
         case .ar:
             ButtonView(selectedStates: $selectedStates, steps: Steps(), filters: Filter(), filterSelected: "", stepSelected: "", posSelected: 0, currentView: $currentView, currentIndex: $currentIndex)
         }
@@ -32,9 +34,10 @@ struct HomePage: View {
 }
 
 struct PageProducts: View {
-    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
     @State var currentView: CurrentView = .logo
     @State var currentIndex: Int
+    @State var selectedIndex: Int
     
     var body: some View {
         NavigationStack {
@@ -66,7 +69,7 @@ struct PageProducts: View {
 }
 
 struct OnboardingProducts: View {
-    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -152,21 +155,22 @@ struct SelectYourProducts: View {
     
     var body: some View {
         OverflowLayout(spacing: 16) {
-            ForEach(steps.stepsList.indices, id: \.self){
+            ForEach(steps.rainbowList.indices, id: \.self){
                 index in
-                var step = steps.stepsList[index]
+                var step = steps.rainbowList[index]
                 ZStack{
                     Button(action: {
                         selectedStates[index].toggle()
                         if selectedStates[index] {
-                            selectedInfoIndex = index
-                            info = step.info
+//                            selectedInfoIndex = index
+//                            info = step.info
                             step.isSelected = true
                             print(selectedStates[index])
                             print(index)
-                        } else {
-                            selectedInfoIndex = nil
                         }
+//                            else {
+//                            selectedInfoIndex = nil
+//                        }
                         saveSelectedStates() // Save the selectedStates whenever it changes
                     }, label: {
                         ZStack {

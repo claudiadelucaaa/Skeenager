@@ -449,7 +449,7 @@
 				CODE_SIGN_ENTITLEMENTS = Skeenager/Skeenager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LHM9LNP2C8;
+				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Skeenager/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result, without saving biometric data, just for apply filters on the face";
@@ -480,7 +480,7 @@
 				CODE_SIGN_ENTITLEMENTS = Skeenager/Skeenager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LHM9LNP2C8;
+				DEVELOPMENT_TEAM = Z7AQTK42KX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Skeenager/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "I need the camera to recognise you and output the result, without saving biometric data, just for apply filters on the face";

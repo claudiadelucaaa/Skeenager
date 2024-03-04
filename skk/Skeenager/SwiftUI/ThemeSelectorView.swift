@@ -11,7 +11,8 @@ struct ThemeSelectorView: View {
     @Binding var currentView: CurrentView
     @Binding var currentIndex: Int
     @Binding var streakCount: Int
-    @State var selectedIndex: Int?
+    @State var selectedIndex = 0
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -22,7 +23,7 @@ struct ThemeSelectorView: View {
                     FilterScrollView(streakCounter: $streakCount, selectedIndex: $selectedIndex, filters: Filter())
                     Spacer()
                     NavigationLink(destination: {
-                        PageProducts(currentIndex: currentIndex)
+                        PageProducts(currentIndex: currentIndex, selectedIndex: selectedIndex)
                             .navigationBarBackButtonHidden()
                     }, label: {
                         ZStack{
@@ -48,7 +49,7 @@ struct FilterScrollView: View {
     @GestureState var dragOffset: CGFloat = 0
     @Binding var streakCounter: Int
     //variabile per selezionare il Tema
-    @Binding var selectedIndex: Int?
+    @Binding var selectedIndex: Int
     
     var filters: Filter
     
@@ -87,14 +88,14 @@ struct FilterScrollView: View {
                 .padding(.bottom)
             ZStack{
                 ForEach(filters.filterList.indices, id: \.self) { index in
-                    var filter = filters.filterList[index]
+                    let filter = filters.filterList[index]
                     VStack {
-                        Button(action: {
-                            //quando si seleziona il tema isLock diventa true
-                            selectedIndex = index
-                            filter.isLock = true
-                            print(filter.isLock)
-                        }, label: {
+//                        Button(action: {
+//                            //quando si seleziona il tema isLock diventa true
+//                            selectedIndex = index
+//                            filter.isLock = true
+//                            print(filter.isLock)
+//                        }, label: {
                             ZStack {
                                 Image(filter.image)
                                     .resizable()
@@ -115,8 +116,10 @@ struct FilterScrollView: View {
                                         .cornerRadius(10)
                                         
                                 }
+                            }.onTapGesture {
+                                selectedIndex = index
                             }
-                        })
+//                        })
                         .simultaneousGesture(DragGesture().onChanged({ value in
                             let threshold: CGFloat = 50
                             if value.translation.width > threshold {
@@ -162,5 +165,5 @@ struct FilterScrollView: View {
 }
 
 #Preview {
-    ThemeSelectorView(currentView: .constant(.products), currentIndex: .constant(0), streakCount: .constant(0))
+    ThemeSelectorView(currentView: .constant(.products), currentIndex: .constant(0), streakCount: .constant(0), selectedIndex: 0)
 }

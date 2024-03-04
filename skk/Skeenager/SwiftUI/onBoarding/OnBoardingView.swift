@@ -10,7 +10,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @State private var selectedView = 1
-    @State private var selectedStates = Array(repeating: false, count: Steps().stepsList.count)
+    @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
     let maxNumberOfScreens = 3
     @State var currentIndex = 0
     // We set this value to false (in case it doesn't already exist)

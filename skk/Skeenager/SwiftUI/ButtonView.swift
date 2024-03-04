@@ -49,8 +49,8 @@ struct ButtonView: View {
                 .ignoresSafeArea()
             VStack{
                 HStack{
-                    ForEach(steps.stepsList.indices, id: \.self) { ind in
-                        let step = steps.stepsList[ind]
+                    ForEach(steps.rainbowList.indices, id: \.self) { ind in
+                        let step = steps.rainbowList[ind]
                         if selectedStates[ind] == true {
                             
                             Button(action: {
