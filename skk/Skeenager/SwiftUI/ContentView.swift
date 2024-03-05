@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct ContentView: App {
     @State private var selectedStates = [false]
-    @State var streakCount = 0
+    @State var streakCount: Int = UserDefaults.standard.integer(forKey: "streakCount")
     @AppStorage(Constants.currentOnboardingVersion) private var hasSeenOnboardingView = false
     
     var body: some Scene {

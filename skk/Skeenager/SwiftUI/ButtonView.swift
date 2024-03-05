@@ -26,7 +26,7 @@ struct ButtonView: View {
     //Streak Counter
     @State private var lastActualAccessDate: Date?
     @State private var lastRecordedAccessDate: Date?
-    @State private var streakCount: Int = UserDefaults.standard.integer(forKey: "streakCount")
+    @State var streakCount: Int = UserDefaults.standard.integer(forKey: "streakCount")
     
     //for transition
     @GestureState var dragOffset: CGFloat = 0

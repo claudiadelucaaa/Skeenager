@@ -41,3 +41,7 @@ struct AppLogo: View {
         }
     }
 }
+
+#Preview {
+    AppLogo(currentView: .constant(.logo), scale: 0.5)
+}
