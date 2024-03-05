@@ -5,9 +5,17 @@
   Created by Claudia De Luca on 29/02/24.
   
 */
-"Choose your Theme" = "Choose your Theme";
-"Start" = "Start";
-"What products do you want to use today?" = "What products do you want to use today?";
+//onBorarding
+"Skin Filter" = "Skin Filter";
+"Use and unlock a lot of filters that will guide your skincare" = "Use and unlock a lot of filters that will guide your skincare.";
+"Select your Products" = "Select your Products.";
+"Track every step using your products and find new ones" = "Track every step using your products and find new ones!";
+
+//onBoarding: Products
+"What products do you already have?" = "What products do you already have?";
+"Select your products" = "Select your products";
+
+//Steps
 "Cleanser" = "Cleanser";
 "Toner" = "Toner";
 "Hydrating Serum" = "Hydrating Serum";
@@ -15,14 +23,19 @@
 "Eye Cream" = "Eye Cream";
 "Moisturizer" = "Moisturizer";
 "Sunscreen" = "Sunscreen";
+
+//Buttons
+"Start" = "Start";
 "Finish" = "Finish";
-"Skin Filter" = "Skin Filter";
-"Use and unlock a lot of filters that will guide your skincare." = "Use and unlock a lot of filters that will guide your skincare.";
-"Select your Products." = "Select your Products.";
-"Track every step using your products and find new ones!" = "Track every step using your products and find new ones!";
 "Done" = "Done";
 "Next" = "Next";
-"Skeenager" = "Skeenager";
-"Step" = "Step";
+
+//ThemeSelectorView
+"Choose your Theme" = "Choose your Theme";
 "Be guided by the theme that represents you the most!" = "Be guided by the theme that represents you the most!";
-"Select your product" = "Select your product";
+"Selected" = "Selected";
+"Rainbow" = "Rainbow";
+"Unicorn" = "Unicorn";
+
+//SelectYourProductsView
+"What products do you want to use today?" = "What products do you want to use today?";

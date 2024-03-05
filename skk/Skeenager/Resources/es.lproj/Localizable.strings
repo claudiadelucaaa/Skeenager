@@ -5,9 +5,17 @@
   Created by Claudia De Luca on 29/02/24.
   
 */
-"Choose your Theme" = "Escoge tu tema";
-"Start" = "Inicia";
-"What products do you want to use today?" = "¿Qué productos quieres usar hoy?";
+//onBorarding
+"Skin Filter" = "Filtros";
+"Use and unlock a lot of filters that will guide your skincare" = "Usa y desbloquea varios filtros que guiarán el cuidado de tu piel.";
+"Select your Products" = "Selecciona tus Productos.";
+"Track every step using your products and find new ones" = "¡Rastrea cada paso usando tus productos y encuentra nuevos!";
+
+//onBoarding: Products
+"What products do you already have?" = "¿Qué productos ya tienes?";
+"Select your products" = "Selecciona tus productos";
+
+//Steps
 "Cleanser" = "Limpiador";
 "Toner" = "Tónico";
 "Hydrating Serum" = "Suero hidratante";
@@ -15,14 +23,19 @@
 "Eye Cream" = "Crema para ojos";
 "Moisturizer" = "Hidratante";
 "Sunscreen" = "Bloqueador solar";
+
+//Buttons
+"Start" = "Inicia";
 "Finish" = "Terminar";
-"Skin Filter" = " Skin Filter";
-"Use and unlock a lot of filters that will guide your skincare." = "Usa y desbloquea varios filtros que guiarán el cuidado de tu piel";
-"Select your Products" = "Selecciona tus productos";
-"Track every step using your products and find new ones!" = "¡Rastrea cada paso usando tus productos y encuentra nuevos!";
 "Done" = "Listo";
 "Next" = "Siguiente";
-"Skeenager" = "Skeenager";
-"Step" = "Paso";
-"Be guided by the theme that represents you the most!" = "Se guiado por el tema que te representa más";
-"Select your product" = "Select your product";
+
+//ThemeSelectorView
+"Choose your Theme" = "Escoge tu tema";
+"Be guided by the theme that represents you the most!" = "¡Se guiado por el tema que te representa más!";
+"Selected" = "Seleccionado";
+"Rainbow" = "Arcoíris";
+"Unicorn" = "Unicornio";
+
+//SelectYourProductsView
+"What products do you want to use today?" = "¿Qué productos quieres usar hoy?";

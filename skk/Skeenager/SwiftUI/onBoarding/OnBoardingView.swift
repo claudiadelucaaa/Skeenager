@@ -24,14 +24,14 @@ struct OnboardingView: View {
                 OnBoardingScreen(item: OnboardingItem(background: "onBoard0",
                                                       systemImageName: "clock.badge.checkmark",
                                                       title: "Skin Filter",
-                                                      subtitle: "Use and unlock lot of filter that will guide your skincare."))
+                                                      subtitle: "Use and unlock a lot of filters that will guide your skincare"))
                 .tag(1)
                 
                 // Screen 2
                 OnBoardingScreen(item: OnboardingItem(background: "onBoard1",
                                                       systemImageName: "dollarsign.circle",
-                                                      title: "Select your Products.",
-                                                      subtitle: "Track of every step using your products and find new one!"))
+                                                      title: "Select your Products",
+                                                      subtitle: "Track every step using your products and find new ones"))
                 .tag(2)
                 
 //                // Screen 3

@@ -115,7 +115,7 @@ struct FilterScrollView: View {
                                         .stroke(Color.black, lineWidth: selectedIndex == index ? 2 : 0)
                                 )
                             if selectedIndex == index {
-                                Text("Selected")
+                                Text(LocalizedStringKey("Selected"))
                                     .frame(width: 80, height: 50)
                                     .foregroundColor(.white)
                                     .padding(8)

@@ -5,24 +5,37 @@
   Created by Claudia De Luca on 29/02/24.
   
 */
-"Choose your Theme" = "Scegli il tuo tema";
-"Start" = "Inizia";
-"What products do you want to use today?" = "Quali prodotti vuoi usare oggi?";
+//onBorarding
+"Skin Filter" = "Filtri";
+"Use and unlock a lot of filters that will guide your skincare" = "Usa e sblocca tanti filtri che ti guideranno durante la tua skincare routine.";
+"Select your Products" = "Seleziona i Prodotti.";
+"Track every step using your products and find new ones" = "Tieni traccia dei prodotti utilizzati e trovane dei nuovi!";
+
+//onBoarding: Products
+"What products do you already have?" = "Quali prodotti già possiedi?";
+"Select your products" = "Seleziona i tuoi prodotti";
+
+//Steps
 "Cleanser" = "Detergente";
 "Toner" = "Tonico";
 "Hydrating Serum" = "Siero Idratante";
 "Treatment" = "Trattamento";
-"Eye Cream" = "Contorno Occhi";
+"Eye Cream" = "Crema Occhi";
 "Moisturizer" = "Crema Idratante";
-"Sunscreen" = "Protezione solare";
+"Sunscreen" = "Crema Solare";
+
+//Buttons
+"Start" = "Inizia";
 "Finish" = "Fine";
-"Skin Filter" = "Skin Filter";
-"Use and unlock a lot of filters that will guide your skincare." = "Esplora e attiva una vasta gamma di filtri che ti condurranno attraverso la tua routine di skincare.";
-"Select your Products." = "Seleziona i tuoi prodotti.";
-"Track every step using your products and find new ones!" = "Monitora ogni passo nell'uso dei tuoi prodotti e scoprine di nuovi!";
 "Done" = "Fine";
-"Next" = "Avanti";
-"Skeenager" = "Skeenager";
-"Step" = "Passo";
-"Be guided by the theme that represents you the most!" = "Lasciati guidare dal tema che più ti rappresenta!";
-"Select your product" = "Seleziona i tuoi prodotti";
+"Next" = "Prossimo";
+
+//ThemeSelectorView
+"Choose your Theme" = "Scegli il Tema";
+"Be guided by the theme that represents you the most!" = "Fatti guidare dal tema che più ti rappresenta!";
+"Selected" = "Selezionato";
+"Rainbow" = "Arcobaleno";
+"Unicorn" = "Unicorno";
+
+//SelectYourProductsView
+"What products do you want to use today?" = "Quali prodotti vuoi utilizzare oggi?";
