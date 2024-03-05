@@ -44,9 +44,11 @@ struct ButtonView: View {
             BasicUIViewControllerRepresentable(filter: $filterSelected)
                 .ignoresSafeArea()
             ZStack {
+                
                 ForEach(steps.rainbowList.indices, id: \.self) { ind in
                     let step = steps.rainbowList[ind]
                     VStack {
+                        Spacer()
                         if selectedStates[ind] == true {
                             let trueCount = selectedStates.filter { $0 }.count
                             

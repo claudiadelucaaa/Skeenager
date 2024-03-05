@@ -48,7 +48,7 @@ struct PageProducts: View {
                     
                     Spacer()
                     
-                    SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+                    SelectYourProducts(selectedStates: $selectedStates, steps: Steps()).padding(.horizontal)
                     
                     Spacer()
                     
@@ -95,7 +95,7 @@ struct OnboardingProducts: View {
                 
                 Spacer()
                 
-                SelectYourProducts(selectedStates: $selectedStates, steps: Steps())
+                SelectYourProducts(selectedStates: $selectedStates, steps: Steps()).padding(.horizontal)
                 
                 Spacer()
                 Spacer()
