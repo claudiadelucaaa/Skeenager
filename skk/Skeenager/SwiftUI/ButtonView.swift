@@ -64,7 +64,7 @@ struct ButtonView: View {
                                     }.padding(.all)
                                 }
                                 
-                                if (posSelected + 1) == selectedStates.lastIndex(where: { $0 }) {
+                                if ((posSelected+1) == selectedStates.lastIndex(where: { $0 })) || ((posSelected) == selectedStates.count) {
                                     Button {
                                         isPushed.toggle()
                                         handleLogin()
