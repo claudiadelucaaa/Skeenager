@@ -36,6 +36,7 @@
 "Selected" = "Selected";
 "Rainbow" = "Rainbow";
 "Unicorn" = "Unicorn";
+"You cannot select this filter. You need 30 soap bubbles to unlock it." = "You cannot select this filter. You need 30 soap bubbles to unlock it.";
 
 //SelectYourProductsView
 "What products do you want to use today?" = "What products do you want to use today?";

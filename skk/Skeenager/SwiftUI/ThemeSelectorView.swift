@@ -73,6 +73,7 @@ struct FilterScrollView: View {
     @GestureState var dragOffset: CGFloat = 0
     //variabile per selezionare il Tema
     @Binding var selectedIndex: Int
+    @State var temp = false
     
     var filters: Filter
     
@@ -110,22 +111,34 @@ struct FilterScrollView: View {
                                 .cornerRadius(10)
                                 .scaledToFit()
                                 .shadow(radius: 10)
-                                .overlay(
+                                .opacity(index != 0 ? 0.5 : 1.0)
+                                .overlay(index != 0 ? RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.black, lineWidth: selectedIndex == index ? 0 : 0) :
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.black, lineWidth: selectedIndex == index ? 2 : 0)
                                 )
                             if selectedIndex == index {
-                                Text(LocalizedStringKey("Selected"))
+                                Text(index != 0 ? LocalizedStringKey(" ") : LocalizedStringKey("Selected"))
                                     .frame(width: 80, height: 50)
                                     .foregroundColor(.white)
                                     .padding(8)
-                                    .background(Color.black)
+                                    .background(index != 0 ? Color.clear: Color.black)
                                     .cornerRadius(10)
                                 
                             }
+                            if selectedIndex == 1 {
+                                
+                            }
                         }.onTapGesture {
-                            selectedIndex = index
-                        }
+                            if selectedIndex != 0 {
+                                selectedIndex = 0
+                            } else{
+                                selectedIndex = 0
+                                temp.toggle()
+                            }
+                        }.alert(isPresented: $temp, content: {
+                            Alert(title: Text(LocalizedStringKey("You cannot select this filter. You need 30 soap bubbles to unlock it.")))
+                        })
                         //                        })
                         .simultaneousGesture(DragGesture().onChanged({ value in
                             let threshold: CGFloat = 50
