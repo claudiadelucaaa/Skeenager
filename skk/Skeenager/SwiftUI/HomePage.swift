@@ -170,7 +170,7 @@ struct SelectYourProducts: View {
             
             ForEach(steps.rainbowList.indices, id: \.self){
                 index in
-                var step = steps.rainbowList[index]
+                let step = steps.rainbowList[index]
                 ZStack{
                     Button(action: {
                         selectedStates[index].toggle()
@@ -178,7 +178,7 @@ struct SelectYourProducts: View {
 //                            step.isSelected = true
 //                        }
 //                        
-//                        saveSelectedStates() // Save the selectedStates whenever it changes
+                        saveSelectedStates() // Save the selectedStates whenever it changes
 
                     }, label: {
                         Text(LocalizedStringKey(step.name))
