@@ -35,13 +35,15 @@ struct PageProducts: View {
                 VStack{
                     Spacer()
                     
-                VStack {
+                    VStack(alignment: .leading) {
                     Text(LocalizedStringKey("What products do you want to use today?"))
                         .font(Font.custom("Urbanist-SemiBold", size: 30))
+                        .multilineTextAlignment(.leading)
                         .foregroundStyle(Color.black)
                     
-                    Text(LocalizedStringKey("Select your products"))
-                        .font(Font.custom("Urbanist-Regular", size: 20))
+                    Text(LocalizedStringKey("Select your products".uppercased()))
+                        .font(Font.custom("Urbanist-Regular", size: 13))
+                        .multilineTextAlignment(.leading)
                         .foregroundStyle(Color.gray)
                 }.frame(width: 300)
                 .multilineTextAlignment(.center)

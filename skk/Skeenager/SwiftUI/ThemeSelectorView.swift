@@ -119,11 +119,11 @@ struct FilterScrollView: View {
                                 )
                             if selectedIndex == index {
                                 Text(index != 0 ? LocalizedStringKey(" ") : LocalizedStringKey("Selected"))
-                                    .frame(width: 80, height: 50)
+                                    .frame(width: 100, height: 40)
                                     .foregroundColor(.white)
                                     .padding(8)
                                     .background(index != 0 ? Color.clear: Color.black)
-                                    .cornerRadius(10)
+                                    .cornerRadius(40)
                                 
                             }
                         }.onTapGesture {
