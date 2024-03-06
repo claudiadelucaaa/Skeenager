@@ -16,6 +16,7 @@ struct ButtonView: View {
     @State var filterSelected = ""
     @State var stepSelected = ""
     @State var posSelected = 0
+    @State private var shittyCoding = 1
     
     //for navigation
     @State private var isPushed = false
@@ -48,113 +49,119 @@ struct ButtonView: View {
                 .ignoresSafeArea()
             ZStack {
                 
-                ForEach(selectedStates.indices, id: \.self) { ind in
-                    let isSelected = selectedStates[ind]
+                ForEach(selectedStates.indices.filter { selectedStates[$0] }, id: \.self) { ind in
+                    //                    let isSelected = selectedStates[ind]
                     let trueCount = selectedStates.filter { $0 }.count
-//                    let step = steps.rainbowList[ind]
+                    //                    let step = steps.rainbowList[ind]
                     
                     VStack {
                         Spacer()
-                        
-                        if isSelected {
-                            HStack{
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 40)
-                                        .fill(Color.white)
-                                        .opacity(0.5)
-                                    
-                                    VStack{
-                                        Text(LocalizedStringKey(steps.rainbowList[ind].name))
-                                        Text(String(steps.rainbowList[ind].pos) + "|" + String(trueCount))
-                                    }.padding(.all)
+                        //                        if isSelected {
+                        HStack{
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 40)
+                                    .fill(Color.white)
+                                    .opacity(0.5)
+                                
+                                VStack{
+                                    Text(LocalizedStringKey(steps.rainbowList[ind].name))
+                                    Text(String(shittyCoding) + "|" + String(trueCount))
+                                }.padding(.all)
+                            }
+                            
+                            
+                            if ((shittyCoding) == trueCount) {
+                                Button {
+                                    isPushed.toggle()
+                                    handleLogin()
+                                } label: {
+                                    Image(systemName: "checkmark")
+                                        .padding(.all)
+                                        .background(Circle()
+                                            .fill(Color.white)
+                                            .opacity(0.5)
+                                            .frame(width: 40.0, height: 40.0))
+                                }.navigationDestination(isPresented: $isPushed) {
+                                    ThemeSelectorView(streakCount: $streakCount)
+                                        .navigationBarBackButtonHidden()
                                 }
-                                
-                                if ((posSelected+1) == selectedStates.lastIndex(where: { $0 })) || ((posSelected) == selectedStates.count) {
-                                    Button {
-                                        isPushed.toggle()
-                                        handleLogin()
-                                    } label: {
-                                        Image(systemName: "checkmark")
-                                            .padding(.all)
-                                            .background(Circle()
-                                                .fill(Color.white)
-                                                .opacity(0.5)
-                                                .frame(width: 40.0, height: 40.0))
-                                    }.navigationDestination(isPresented: $isPushed) {
-                                        ThemeSelectorView(streakCount: $streakCount)
-                                            .navigationBarBackButtonHidden()
+                            } else{
+                                Button {
+                                    if let nextIndex = selectedStates.indices.dropFirst(currentIndex + 1).first(where: { selectedStates[$0] }) {
+                                        currentIndex = nextIndex
+                                        filterSelected = steps.rainbowList[nextIndex].filte
+                                        posSelected = steps.rainbowList[nextIndex].pos
                                     }
-                                } else{
-                                    Button {
-                                        currentIndex += 1
-                                        filterSelected = steps.rainbowList[ind].filte
-                                        posSelected = steps.rainbowList[ind].pos
-//                                        print(adjustedIndex)
-                                        print(currentIndex)
-                                    } label: {
-                                        Image(systemName: "arrow.forward")
-                                            .padding(.all)
-                                            .background(Circle()
-                                                .fill(Color.white)
-                                                .opacity(0.5)
-                                                .frame(width: 40.0, height: 40.0))
-                                    }
+                                    shittyCoding += 1
+//                                    filterSelected = steps.rainbowList[ind].filte
+//                                    posSelected = steps.rainbowList[ind].pos
+                                    //                                        print(adjustedIndex)
+                                    print(currentIndex)
+                                    print("VALUE OF IN \(ind)")
+                                } label: {
+                                    Image(systemName: "arrow.forward")
+                                        .padding(.all)
+                                        .background(Circle()
+                                            .fill(Color.white)
+                                            .opacity(0.5)
+                                            .frame(width: 40.0, height: 40.0))
                                 }
-                                
-                                
-                            }.font(Font.custom("Urbanist-SemiBold", size: 20))
-                                .frame(width: 350.0, height: 80)
-                                .foregroundStyle(Color.black)
-                                .opacity(ind == currentIndex ? 1.0 : 0.0)
-                        } else {
-                            HStack{
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 40)
-                                        .fill(Color.white)
-                                        .opacity(0.5)
-                                    
-                                    VStack{
-                                        Text(LocalizedStringKey(steps.rainbowList[ind+1].name))
-                                        Text(String(steps.rainbowList[ind+1].pos) + "|" + String(trueCount))
-                                    }.padding(.all)
-                                }
-                                
-                                if ((posSelected+1) == selectedStates.lastIndex(where: { $0 })) || ((posSelected) == selectedStates.count) {
-                                    Button {
-                                        isPushed.toggle()
-                                        handleLogin()
-                                    } label: {
-                                        Image(systemName: "checkmark")
-                                            .padding(.all)
-                                            .background(Circle()
-                                                .fill(Color.white)
-                                                .opacity(0.5)
-                                                .frame(width: 40.0, height: 40.0))
-                                    }.navigationDestination(isPresented: $isPushed) {
-                                        ThemeSelectorView(streakCount: $streakCount)
-                                            .navigationBarBackButtonHidden()
-                                    }
-                                } else{
-                                    Button {
-                                        currentIndex += 1
-                                        filterSelected = steps.rainbowList[ind+1].filte
-                                        posSelected = steps.rainbowList[ind+1].pos
-//                                        print(adjustedIndex)
-                                        print(currentIndex)
-                                    } label: {
-                                        Image(systemName: "arrow.forward")
-                                            .padding(.all)
-                                            .background(Circle()
-                                                .fill(Color.white)
-                                                .opacity(0.5)
-                                                .frame(width: 40.0, height: 40.0))
-                                    }
-                                }                                
-                            }.font(Font.custom("Urbanist-SemiBold", size: 20))
-                                .frame(width: 350.0, height: 80)
-                                .foregroundStyle(Color.black)
-                                .opacity(ind == currentIndex ? 1.0 : 0.0)
-                        }
+                            }
+                            
+                            
+                        }.font(Font.custom("Urbanist-SemiBold", size: 20))
+                            .frame(width: 350.0, height: 80)
+                            .foregroundStyle(Color.black)
+                            .opacity(ind == currentIndex ? 1.0 : 0.0)
+                        //                        } else {
+                        //                            HStack{
+                        //                                ZStack {
+                        //                                    RoundedRectangle(cornerRadius: 40)
+                        //                                        .fill(Color.white)
+                        //                                        .opacity(0.5)
+                        //
+                        //                                    VStack{
+                        //                                        Text(LocalizedStringKey(steps.rainbowList[ind+1].name))
+                        //                                        Text(String(steps.rainbowList[ind+1].pos) + "|" + String(trueCount))
+                        //                                    }.padding(.all)
+                        //                                }
+                        //
+                        //                                if ((posSelected+1) == selectedStates.lastIndex(where: { $0 })) || ((posSelected) == selectedStates.count) {
+                        //                                    Button {
+                        //                                        isPushed.toggle()
+                        //                                        handleLogin()
+                        //                                    } label: {
+                        //                                        Image(systemName: "checkmark")
+                        //                                            .padding(.all)
+                        //                                            .background(Circle()
+                        //                                                .fill(Color.white)
+                        //                                                .opacity(0.5)
+                        //                                                .frame(width: 40.0, height: 40.0))
+                        //                                    }.navigationDestination(isPresented: $isPushed) {
+                        //                                        ThemeSelectorView(streakCount: $streakCount)
+                        //                                            .navigationBarBackButtonHidden()
+                        //                                    }
+                        //                                } else{
+                        //                                    Button {
+                        //                                        currentIndex += 1
+                        //                                        filterSelected = steps.rainbowList[ind+1].filte
+                        //                                        posSelected = steps.rainbowList[ind+1].pos
+                        ////                                        print(adjustedIndex)
+                        //                                        print(currentIndex)
+                        //                                    } label: {
+                        //                                        Image(systemName: "arrow.forward")
+                        //                                            .padding(.all)
+                        //                                            .background(Circle()
+                        //                                                .fill(Color.white)
+                        //                                                .opacity(0.5)
+                        //                                                .frame(width: 40.0, height: 40.0))
+                        //                                    }
+                        //                                }
+                        //                            }.font(Font.custom("Urbanist-SemiBold", size: 20))
+                        //                                .frame(width: 350.0, height: 80)
+                        //                                .foregroundStyle(Color.black)
+                        //                                .opacity(ind == currentIndex ? 1.0 : 0.0)
+                        //                        }
                     }
                 }
             }
@@ -164,7 +171,9 @@ struct ButtonView: View {
                     filterSelected = steps.rainbowList[index].filte
                     stepSelected = steps.rainbowList[index].name
                     posSelected = steps.rainbowList[index].pos
+                    currentIndex = index
                 }
+                print(selectedStates.indices.filter { selectedStates[$0]})
             }
         }
     }

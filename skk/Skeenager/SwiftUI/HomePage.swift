@@ -26,7 +26,7 @@ struct PageProducts: View {
     @State private var selectedStates = Array(repeating: false, count: Steps().rainbowList.count)
     @State var currentView: CurrentView = .logo
     @State var currentIndex: Int
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -149,6 +149,7 @@ struct OverflowLayout: Layout {
 
 struct SelectYourProducts: View {
     @Binding var selectedStates: [Bool]
+    @State private var shityCoding: [Int] = []
     
     var steps: Steps
     let disabled: Color = .white
@@ -173,12 +174,11 @@ struct SelectYourProducts: View {
                 ZStack{
                     Button(action: {
                         selectedStates[index].toggle()
-                        
-                        if selectedStates[index] {
-                            step.isSelected = true
-                        }
-                        
-                        saveSelectedStates() // Save the selectedStates whenever it changes
+//                        if selectedStates[index] {
+//                            step.isSelected = true
+//                        }
+//                        
+//                        saveSelectedStates() // Save the selectedStates whenever it changes
 
                     }, label: {
                         Text(LocalizedStringKey(step.name))
@@ -202,7 +202,7 @@ struct SelectYourProducts: View {
     }
 }
 
-
-#Preview {
-    PageProducts(currentIndex: 0)
-}
+//
+//#Preview {
+//    PageProducts(currentIndex: 0)
+//}
