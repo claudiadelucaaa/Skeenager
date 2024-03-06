@@ -31,6 +31,9 @@ struct ButtonView: View {
     //for transition
     @GestureState var dragOffset: CGFloat = 0
     
+    // prove
+    var arrayProvaTemp: [Int] = []
+    
     //Init
     init(selectedStates: Binding<[Bool]>, currentView: Binding<CurrentView>, currentIndex: State<Int>, steps: Steps) {
         self._selectedStates = selectedStates
@@ -45,22 +48,24 @@ struct ButtonView: View {
                 .ignoresSafeArea()
             ZStack {
                 
-                ForEach(steps.rainbowList.indices, id: \.self) { ind in
-                    let step = steps.rainbowList[ind]
+                ForEach(selectedStates.indices, id: \.self) { ind in
+                    let isSelected = selectedStates[ind]
+                    let trueCount = selectedStates.filter { $0 }.count
+//                    let step = steps.rainbowList[ind]
+                    
                     VStack {
                         Spacer()
-                        if selectedStates[ind] == true {
-                            let trueCount = selectedStates.filter { $0 }.count
-                            
+                        
+                        if isSelected {
                             HStack{
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 40)
-                                        .fill(Color.gray)
+                                        .fill(Color.white)
                                         .opacity(0.5)
                                     
                                     VStack{
-                                        Text(LocalizedStringKey(step.name))
-                                        Text(String(step.pos+1) + "|" + String(trueCount))
+                                        Text(LocalizedStringKey(steps.rainbowList[ind].name))
+                                        Text(String(steps.rainbowList[ind].pos) + "|" + String(trueCount))
                                     }.padding(.all)
                                 }
                                 
@@ -72,7 +77,7 @@ struct ButtonView: View {
                                         Image(systemName: "checkmark")
                                             .padding(.all)
                                             .background(Circle()
-                                                .fill(Color.gray)
+                                                .fill(Color.white)
                                                 .opacity(0.5)
                                                 .frame(width: 40.0, height: 40.0))
                                     }.navigationDestination(isPresented: $isPushed) {
@@ -82,13 +87,15 @@ struct ButtonView: View {
                                 } else{
                                     Button {
                                         currentIndex += 1
-                                        filterSelected = step.filte
-                                        posSelected = step.pos
+                                        filterSelected = steps.rainbowList[ind].filte
+                                        posSelected = steps.rainbowList[ind].pos
+//                                        print(adjustedIndex)
+                                        print(currentIndex)
                                     } label: {
                                         Image(systemName: "arrow.forward")
                                             .padding(.all)
                                             .background(Circle()
-                                                .fill(Color.gray)
+                                                .fill(Color.white)
                                                 .opacity(0.5)
                                                 .frame(width: 40.0, height: 40.0))
                                     }
@@ -98,11 +105,57 @@ struct ButtonView: View {
                             }.font(Font.custom("Urbanist-SemiBold", size: 20))
                                 .frame(width: 350.0, height: 80)
                                 .foregroundStyle(Color.black)
+                                .opacity(ind == currentIndex ? 1.0 : 0.0)
+                        } else {
+                            HStack{
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 40)
+                                        .fill(Color.white)
+                                        .opacity(0.5)
+                                    
+                                    VStack{
+                                        Text(LocalizedStringKey(steps.rainbowList[ind+1].name))
+                                        Text(String(steps.rainbowList[ind+1].pos) + "|" + String(trueCount))
+                                    }.padding(.all)
+                                }
+                                
+                                if ((posSelected+1) == selectedStates.lastIndex(where: { $0 })) || ((posSelected) == selectedStates.count) {
+                                    Button {
+                                        isPushed.toggle()
+                                        handleLogin()
+                                    } label: {
+                                        Image(systemName: "checkmark")
+                                            .padding(.all)
+                                            .background(Circle()
+                                                .fill(Color.white)
+                                                .opacity(0.5)
+                                                .frame(width: 40.0, height: 40.0))
+                                    }.navigationDestination(isPresented: $isPushed) {
+                                        ThemeSelectorView(streakCount: $streakCount)
+                                            .navigationBarBackButtonHidden()
+                                    }
+                                } else{
+                                    Button {
+                                        currentIndex += 1
+                                        filterSelected = steps.rainbowList[ind+1].filte
+                                        posSelected = steps.rainbowList[ind+1].pos
+//                                        print(adjustedIndex)
+                                        print(currentIndex)
+                                    } label: {
+                                        Image(systemName: "arrow.forward")
+                                            .padding(.all)
+                                            .background(Circle()
+                                                .fill(Color.white)
+                                                .opacity(0.5)
+                                                .frame(width: 40.0, height: 40.0))
+                                    }
+                                }                                
+                            }.font(Font.custom("Urbanist-SemiBold", size: 20))
+                                .frame(width: 350.0, height: 80)
+                                .foregroundStyle(Color.black)
+                                .opacity(ind == currentIndex ? 1.0 : 0.0)
                         }
-                    }.tag(ind)
-                        .opacity(currentIndex == ind ? 2.0 : 0.5)
-                    //                        .scaleEffect(currentIndex == ind ? 1.0 : 0.7)
-                        .offset(x: CGFloat(ind - currentIndex) * 350 + dragOffset, y: 0)
+                    }
                 }
             }
             .onAppear {

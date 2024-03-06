@@ -126,9 +126,6 @@ struct FilterScrollView: View {
                                     .cornerRadius(10)
                                 
                             }
-                            if selectedIndex == 1 {
-                                
-                            }
                         }.onTapGesture {
                             if selectedIndex != 0 {
                                 selectedIndex = 0
@@ -157,6 +154,7 @@ struct FilterScrollView: View {
                         Text(LocalizedStringKey(filter.name))
                             .font(Font.custom("Urbanist-Regular", size: 20))
                             .padding()
+                            .foregroundStyle(Color.black)
                     }.tag(index)
                         .opacity(currentIndex == index ? 2.0 : 0.5)
                         .scaleEffect(currentIndex == index ? 1.0 : 0.7)
